@@ -9,7 +9,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchMenuItem = async () => {
             try {
-                const response = await fetch(`http://54.89.35.151:3200/api/menu/${id}`);
+                const response = await fetch(`https://qmunuback.onrender.com/api/menu/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch menu item');
                 }
