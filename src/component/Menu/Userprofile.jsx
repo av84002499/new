@@ -130,7 +130,7 @@ const Userprofile = (props) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-auto">
-              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=http://localhost:3000/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
+              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
             </div>
           </div>
         </div>
