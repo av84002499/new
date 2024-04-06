@@ -63,7 +63,7 @@ const Menu = () => {
                                     <div key={index} className="menu-style col-md-6">
                                         <div className="menu-item align-items-center d-flex">
                                             <div className="menu-item-thumbnail">
-                                                <img src={product.imageUrl} alt={product.name} />
+                                                <img src={product.product.imageUrl} />
                                             </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
