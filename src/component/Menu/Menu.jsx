@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 const Menu = () => {
     const { id } = useParams();
     const [menuItem, setMenuItem] = useState([]);
-    const [shopdtl, setShopdtl] = useState({});
+    const [shopdtl, seTshopdtl] = useState({})
 
     useEffect(() => {
         const fetchMenuItem = async () => {
@@ -15,7 +15,7 @@ const Menu = () => {
                 }
                 const result = await response.json();
                 setMenuItem(result.products);
-                setShopdtl(result.shopDtl);
+                seTshopdtl(result.shopDtl);
             } catch (error) {
                 console.error('Error fetching menu item:', error);
             }
@@ -35,7 +35,8 @@ const Menu = () => {
                         <div className="inner-banner-text text-center">
                             <h1>{shopdtl.shopname}</h1>
                             <h2>Best Restaurant at</h2>
-                            <p>{shopdtl.address}</p>
+                            <p>{shopdtl.address}
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -54,39 +55,41 @@ const Menu = () => {
                                     Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                             </div>
                         </div>
+
                     </div>
                     <hr />
                     <div className="container">
                         <div className="tab-pane fade show active" id="tabmenu-one" role="tabpanel" aria-labelledby="tabmenu-one-tab">
                             <div className="row">
-                                {menuItem.map((product, index) => (
+                                {menuItem.map((product, index) => (<>
                                     <div key={index} className="menu-style col-md-6">
                                         <div className="menu-item align-items-center d-flex">
-                                            <div className="menu-item-thumbnail">
-                                                {/* Change the image source here */}
-                                                <img src={product.image} alt={product.name} />
+                                            <div className="menu-item-thumbnail"><img src="https://indiaemenu.com/webcss/assets/images/menu-item-02.png" alt="" />
                                             </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
-                                                <p>Size: {product.sizes.join(', ')}</p>
+                                                <p>Size: {product.sizes.map((size) => (<>
+                                                    {size}
+                                                </>))}
+                                                </p>
                                             </div>
                                             <div className="menu-item-price">
                                                 <p>Rs.{product.price}/-</p>
                                             </div>
-                                            {/* Assuming you want to display a URL */}
-                                            <div className="menu-item-url">
-                                                <p>: {product.url}</p>
-                                            </div>
+                                            <div className="menu-item-img">
+                                            <p>{product.img}/-</p>
+                                        </div>
                                         </div>
                                     </div>
-                                ))}
+                                </>))}
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </>
-    );
-};
 
-export default Menu;
+        </>
+    )
+}
+
+export default Menu
