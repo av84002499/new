@@ -75,7 +75,7 @@ const Menu = () => {
                                             </div>
                                             {/* Assuming you want to display a URL */}
                                             <div className="menu-item-url">
-                                                <p>URL: {product.url}</p>
+                                                <p>: {product.url}</p>
                                             </div>
                                         </div>
                                     </div>
