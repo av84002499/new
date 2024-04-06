@@ -76,6 +76,9 @@ const Menu = () => {
                                             <div className="menu-item-price">
                                                 <p>Rs.{product.price}/-</p>
                                             </div>
+                                            <div className="menu-item-price">
+                                                <p>url.{product.url}/-</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </>))}
