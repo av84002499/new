@@ -76,9 +76,9 @@ const Menu = () => {
                                             <div className="menu-item-price">
                                                 <p>Rs.{product.price}/-</p>
                                             </div>
-                                            <div className="menu-item-price">
-                                                <p>url.{product.url}/-</p>
-                                            </div>
+                                            <div className="menu-item-thumbnail">
+                                            <img src={product.image} alt="" />
+                                        </div>
                                         </div>
                                     </div>
                                 </>))}
