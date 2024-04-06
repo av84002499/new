@@ -26,7 +26,7 @@ const Menu = () => {
     return (
         <>
             <div style={{
-                backgroundImage: "url('images.jpeg')",
+                backgroundImage: "url('')",
                 height: '70vh',
                 color: 'white' // Adjust text color to white
             }}>
