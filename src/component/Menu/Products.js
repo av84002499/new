@@ -166,12 +166,13 @@ const Products = (props) => {
                                     <div className="menu-item-price">
                                         <p>Rs.{product.price}/-</p>
                                     </div>
-                                    <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
-
+                                    
 
                                     <div className='position-absolute top-0 end-0 m-3'>
                                         <button type='button' className='btn btn-sm btn-danger rounded-pill float-end' onClick={() => deleteProduct(product.name, product._id)}><i className="bi bi-trash"></i></button>
-                                    </div>
+                                        <button className="btn btn-success rounded-pill float-end ms-3" type='submit'>Save</button>
+                                        <button type="button" className="btn btn-secondary float-end rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                        </div>
                                 </div>
                             </div>
                             <div class="modal fade" id={product._id} tabIndex="-1" aria-labelledby="prodIMGModalLabel" aria-hidden="true">
