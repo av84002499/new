@@ -172,8 +172,8 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}</h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-                
-                <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
+
+                <label htmlFor="name" className="form-label ms-3"> Name:</label>
                 <select id="shopname" name="shopname" className="form-select">
                   <option value="barber shop">Barber Shop</option>
                   <option value="fruit corner">Fruit Corner</option>
