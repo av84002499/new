@@ -174,8 +174,6 @@ const Userprofile = (props) => {
                 <form className='m-3' id='shopdtl'>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required="" />
-
-                  
                   <label htmlFor="address" className="form-label ms-3">address:</label>
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required="" />
                   <div className='row'>
