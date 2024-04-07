@@ -66,7 +66,6 @@ const Menu = () => {
                                         <div className="menu-item align-items-center d-flex">
                                         <div className="menu-item-thumbnail">
                                         <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
-                                        <div  className="btn btn-warning rounded-pill position-absolute top-0 start-0 p-1" data-bs-toggle="modal" data-bs-target={'#' + product._id}></div>
                                     </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
