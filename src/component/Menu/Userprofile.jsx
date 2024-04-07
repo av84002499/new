@@ -174,6 +174,7 @@ const Userprofile = (props) => {
                 <form className='m-3' id='shopdtl'>
                 <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                 <select id="shopname" name="shopname" className="form-select">
+                <option value="shopname">shopname</option>
                   <option value="barber shop">Barber Shop</option>
                   <option value="fruit corner">Fruit Corner</option>
                   <option value="hotel">Hotel</option>
