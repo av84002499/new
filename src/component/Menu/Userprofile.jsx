@@ -51,7 +51,7 @@ const Userprofile = (props) => {
   if (shopdtl) {
     document.getElementById('shopname').value = shopdtl.shopname;
     document.getElementById('address').value = shopdtl.address;
-    document.getElementById('age').value = shopdtl.age;
+    document.getElementById('fcinumber').value = shopdtl.fcinumber;
     document.getElementById('phonenumber').value = shopdtl.phonenumber;
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
@@ -69,11 +69,11 @@ const Userprofile = (props) => {
     // const form = document.getElementById('shopdtl');
     const shopname = document.getElementById('shopname').value;
     const address = document.getElementById('address').value;
-    const age = document.getElementById('age').value;
+    const fcinumber = document.getElementById('fcinumber').value;
     const phonenumber = document.getElementById('phonenumber').value;
     const gstnumber = document.getElementById('gstnumber').value;
     const aadharnumber = document.getElementById('aadharnumber').value;
-    const formData = { shopname: shopname, address: address, age: parseInt(age), phonenumber: phonenumber, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
+    const formData = { shopname: shopname, address: address, fcinumber: fcinumber, phonenumber: phonenumber, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
 
     console.log(formData);
     try {
@@ -178,8 +178,8 @@ const Userprofile = (props) => {
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required="" />
                   <div className='row'>
                     <div className='col-sm-6'>
-                      <label htmlFor="age" className="form-label ms-3">FCI Number</label>
-                      <input type="text" id="age" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required="" />
+                      <label htmlFor="fcinumber" className="form-label ms-3">FCI Number</label>
+                      <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required="" />
                     </div>
                     <div className='col-sm-6'>
                       <label htmlFor="phonenumber" className="form-label ms-3">Phone Number:</label>
