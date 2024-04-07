@@ -27,8 +27,8 @@ const Menu = () => {
         <>
         <div style={{
             backgroundImage: `url('https://qmunuback.onrender.com/uploads/${shopdtl.imageUrl}')`,
-            height: '70vh',
-            color: 'white' // Adjust text color to white
+            height: 'auto',
+            width: 'auto',
         }}>
                 <section className="innerpages-banner text-center innerpages-banner-hair">
                     <div className="container">
