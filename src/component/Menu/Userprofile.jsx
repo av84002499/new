@@ -118,23 +118,27 @@ const Userprofile = (props) => {
       <div className="card-header text-center text-white" style={{ backgroundColor: '#2a5c99' }}>
         <h2 className="tm-hero-title mb-0 position-relative">
           My Profile
-          <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"></i></button>
+          <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i className="bi bi-upc-scan"></i></button>
         </h2>
       </div>
 
-      <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div className="modal-dialog">
+        <div className="modal-content">
+            <div className="modal-header">
+                <h5 className="modal-title" id="qrModalLabel">QR Code</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body m-auto">
-              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
+            <div className="modal-body m-auto">
+                <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
+                <a href={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} download="qr_code.png">
+                    <button className="btn btn-primary">Download QR Code</button>
+                </a>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
 
 
       <div className="card-body">
