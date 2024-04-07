@@ -52,7 +52,8 @@ const Userprofile = (props) => {
     document.getElementById('shopname').value = shopdtl.shopname;
     document.getElementById('address').value = shopdtl.address;
     document.getElementById('fcinumber').value = shopdtl.fcinumber;
-    document.getElementById('phonenumber').value = shopdtl.phonenumber;
+    document.getElementById('phonenumber1').value = shopdtl.phonenumber1;
+    document.getElementById('phonenumber2').value = shopdtl.phonenumber2;
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     document.getElementById('profimg').src = 'https://qmunuback.onrender.com/uploads/' + shopdtl.imageUrl;
@@ -70,10 +71,11 @@ const Userprofile = (props) => {
     const shopname = document.getElementById('shopname').value;
     const address = document.getElementById('address').value;
     const fcinumber = document.getElementById('fcinumber').value;
-    const phonenumber = document.getElementById('phonenumber').value;
+    const phonenumber1 = document.getElementById('phonenumber1').value;
+    const phonenumber2 = document.getElementById('phonenumber2').value;
     const gstnumber = document.getElementById('gstnumber').value;
     const aadharnumber = document.getElementById('aadharnumber').value;
-    const formData = { shopname: shopname, address: address, fcinumber: fcinumber, phonenumber: phonenumber, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
+    const formData = { shopname: shopname, address: address, fcinumber: fcinumber, phonenumber1: phonenumber1, phonenumber2: phonenumber2, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
 
     console.log(formData);
     try {
@@ -182,12 +184,12 @@ const Userprofile = (props) => {
                       <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required="" />
                     </div>
                     <div className='col-sm-3'>
-                      <label htmlFor="phonenumber" className="form-label ms-3">Phone Number:</label>
-                      <input type="text" id="phonenumber" className="form-control mb-3 rounded-pill" placeholder="Phone Number" required="" />
+                      <label htmlFor="phonenumber1" className="form-label ms-3">Phone Number 1:</label>
+                      <input type="text" id="phonenumber1" className="form-control mb-3 rounded-pill" placeholder="Phone Number1" required="" />
                     </div>
                     <div className='col-sm-3'>
-                      <label htmlFor="phonenumber" className="form-label ms-3">Phone Number:</label>
-                      <input type="text" id="phonenumber" className="form-control mb-3 rounded-pill" placeholder="Phone Number" required="" />
+                      <label htmlFor="phonenumber2" className="form-label ms-3">Phone Number 2:</label>
+                      <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2" required="" />
                     </div>
                   </div>
                   <div className='row mb-3'>
