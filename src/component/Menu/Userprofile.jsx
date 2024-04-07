@@ -183,8 +183,9 @@ const Userprofile = (props) => {
                     </div>
                     <div className='col-sm-6'>
                       <label htmlFor="phonenumber" className="form-label ms-3">Phone Number1 & 2:</label>
-                      <input type="text" id="phonenumber" className="form-control mb-3 rounded-pill" placeholder="Phone Number ||Phone Number " required="" />
-                    </div>
+                      <input type="text" id="areaCode" className="form-control mb-3 rounded-pill" placeholder="Area Code" required="" />
+                      <input type="text" id="phoneNumber" className="form-control mb-3 rounded-pill" placeholder="Phone Number" required="" />
+                      </div>
                    
                   </div>
                   <div className='row mb-3'>
