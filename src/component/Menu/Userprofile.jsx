@@ -178,7 +178,7 @@ const Userprofile = (props) => {
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required="" />
                   <div className='row'>
                     <div className='col-sm-6'>
-                      <label htmlFor="age" className="form-label ms-3">age:</label>
+                      <label htmlFor="age" className="form-label ms-3">FCI Number</label>
                       <input type="text" id="age" className="form-control mb-3 rounded-pill" placeholder="age" required="" />
                     </div>
                     <div className='col-sm-6'>
