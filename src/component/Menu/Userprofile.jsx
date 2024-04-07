@@ -130,7 +130,7 @@ const Userprofile = (props) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-auto">
-              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
+              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
             </div>
           </div>
         </div>
@@ -172,16 +172,8 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}</h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-
-                <label htmlFor="name" className="form-label ms-3"> Name:</label>
-                <select id="shop" name="shopname" className="form-select">
-                  <option value="barber shop">Barber Shop</option>
-                  <option value="fruit corner">Fruit Corner</option>
-                  <option value="hotel">Hotel</option>
-
-                </select>
-                <input type="text" id="shopnameInput" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required="" />
-                
+                  <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
+                  <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required="" />
                   <label htmlFor="address" className="form-label ms-3">address:</label>
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required="" />
                   <div className='row'>
