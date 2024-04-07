@@ -64,8 +64,10 @@ const Menu = () => {
                                 {menuItem.map((product, index) => (<>
                                     <div key={index} className="menu-style col-md-6">
                                         <div className="menu-item align-items-center d-flex">
-                                            <div className="menu-item-thumbnail"><img src="https://indiaemenu.com/webcss/assets/images/menu-item-02.png" alt="" />
-                                            </div>
+                                        <div className="menu-item-thumbnail">
+                                        <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                        <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 start-0 p-1" data-bs-toggle="modal" data-bs-target={'#' + product._id}><i className="bi bi-pencil-square p-1"></i></button>
+                                    </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
                                                 <p>Size: {product.sizes.map((size) => (<>
