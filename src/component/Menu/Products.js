@@ -166,6 +166,8 @@ const Products = (props) => {
                                     <div className="menu-item-price">
                                         <p>Rs.{product.price}/-</p>
                                     </div>
+                                    <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+
 
                                     <div className='position-absolute top-0 end-0 m-3'>
                                         <button type='button' className='btn btn-sm btn-danger rounded-pill float-end' onClick={() => deleteProduct(product.name, product._id)}><i className="bi bi-trash"></i></button>
