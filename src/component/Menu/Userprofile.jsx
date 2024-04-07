@@ -174,10 +174,12 @@ const Userprofile = (props) => {
                 <form className='m-3' id='shopdtl'>
 
                 <label htmlFor="name" className="form-label ms-3"> Name:</label>
-                <select id="shopname" name="shopname" className="form-select">
+                <select id="shop" name="shopname" className="form-select">
                   <option value="barber shop">Barber Shop</option>
                   <option value="fruit corner">Fruit Corner</option>
                   <option value="hotel">Hotel</option>
+                  <option value="shopname">shopname</option>
+
                 </select>
                 <input type="text" id="shopnameInput" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required="" />
                 
