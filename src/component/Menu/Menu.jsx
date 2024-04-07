@@ -33,6 +33,8 @@ const Menu = () => {
                 <section className="innerpages-banner text-center innerpages-banner-hair">
                     <div className="container">
                         <div className="inner-banner-text text-center">
+                        <img src={'https://qmunuback.onrender.com/uploads/' + shopdtl.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+
                             <h1>{shopdtl.shopname}</h1>
                             <h2>Best Restaurant at</h2>
                             <p>{shopdtl.address}
