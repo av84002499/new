@@ -6,18 +6,18 @@ import Swal from 'sweetalert2';
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
-  const [downloadUrl, setDownloadUrl] = useState('');
 
 
-  const handleDownload = () => {
-    // Trigger download by creating a temporary anchor element
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'qrcode.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  
+    const iframe = document.getElementById("qrcode");
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const img = iframeDoc.querySelector("img");
+    const anchor = document.createElement("a");
+    anchor.href = img.src;
+    anchor.download = "QR_Code.png";
+    anchor.click();
+
+  
   
 
 
@@ -160,9 +160,11 @@ const Userprofile = (props) => {
           <div class="modal-body m-auto">
             <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
           </div>
-          {downloadUrl && (
-            <button onClick={handleDownload}>Download QR Code</button>
-          )}
+          <div class="modal-footer">
+          <a href="/" className="btn btn-primary" onClick={this.download}>
+          Download QR Code
+        </a>
+          </div>
         </div>
       </div>
     </div>
