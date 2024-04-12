@@ -187,19 +187,20 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
+                <div>
+                <label htmlFor="category" className="form-label ms-3">category:</label>
+                <select id="category" className="form-select mb-3 rounded-pill">
+                  <option value="Clothing">Clothing</option>
+                  <option value="Books">Books</option>
+                  <option value="Electronics">Electronics</option>
+                </select>
+                </div>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
-                  <div>
+                  
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
 
-                  <label htmlFor="category" className="form-label ms-3">category:</label>
-                  <select id="category" className="form-select mb-3 rounded-pill">
-                    <option value="Clothing">Clothing</option>
-                    <option value="Books">Books</option>
-                    <option value="Electronics">Electronics</option>
-                  </select>
-                  </div>
 
 
                   <div className='row'>
