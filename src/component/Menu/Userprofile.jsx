@@ -6,16 +6,18 @@ import Swal from 'sweetalert2';
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
+  const [downloadUrl, setDownloadUrl] = useState('');
 
-  download() {
-    const canvas = document.querySelector('.modal-body iframe').contentDocument.querySelector('canvas');
+
+  const handleDownload = () => {
+    // Trigger download by creating a temporary anchor element
     const link = document.createElement('a');
-    link.href = canvas.toDataURL();
-    link.download = 'QR_Code.png';
+    link.href = downloadUrl;
+    link.download = 'qrcode.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
   
 
 
@@ -158,11 +160,9 @@ const Userprofile = (props) => {
           <div class="modal-body m-auto">
             <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
           </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-primary" ref={(ref) => this.downloadRef = ref} onClick={this.download}>
-              Download QR Code
-            </a>
-          </div>
+          {downloadUrl && (
+            <button onClick={handleDownload}>Download QR Code</button>
+          )}
         </div>
       </div>
     </div>
