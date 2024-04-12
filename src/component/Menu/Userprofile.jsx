@@ -188,11 +188,17 @@ const Userprofile = (props) => {
                 <hr />
                 <form className='m-3' id='shopdtl'>
                 <div>
-                <label htmlFor="category" className="form-label ms-3">category:</label>
+                <label htmlFor="category" className="form-label ms-3">Choose Your Industry Category:</label>
                 <select id="category" className="form-select mb-3 rounded-pill">
-                  <option value="Clothing">Clothing</option>
-                  <option value="Books">Books</option>
-                  <option value="Electronics">Electronics</option>
+                  <option value="Food and beverage">Food and beverage</option>
+                  <option value="Electrical and Electronics">Electrical and Electronics</option>
+                  <option value="Medical">Medical</option>
+                  <option value="Beaut parlour and Saloon">Beaut parlour and Saloon</option>
+                  <option value="Tour and travellers">Tour and travellers </option>
+                  <option value="Hotels">Hotels</option>
+                  <option value="Others">Others</option>
+
+
                 </select>
                 </div>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
