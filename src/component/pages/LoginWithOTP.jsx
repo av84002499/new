@@ -12,7 +12,7 @@ const LoginWithOTP = (props) => {
         try {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            const response = await fetch('https://qmunuback.onrender.com/api/users/signinWithOTP', {
+            const response = await fetch('http://127.0.0.1:3200/api/users/signinWithOTP', {
                 method: 'POST',
                 headers: myHeaders,
                 body: JSON.stringify({ email: email, otp: otp }),

@@ -10,7 +10,7 @@ const GetResetPasswordOTP = (props) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://qmunuback.onrender.com/api/users/sendotp', {
+            const response = await fetch('http://127.0.0.1:3200/api/users/sendotp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

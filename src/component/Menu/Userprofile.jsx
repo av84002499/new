@@ -7,6 +7,7 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
 
+
   const getShopdtls = useCallback(async () => {
     const userId = props.userLogged().userID;
     if (!userId) {
@@ -17,7 +18,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
+      const response = await fetch('http://127.0.0.1:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
+      const response = await fetch('http://127.0.0.1:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,23 +138,18 @@ const Userprofile = (props) => {
       </div>
 
       <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body m-auto">
-            <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
-          </div>
-          <div class="modal-footer">
-          <a href="/" className="btn btn-primary" onClick={this.download}>
-          Download QR Code
-        </a>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body m-auto">
+              <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
       <div className="card-body">
@@ -191,26 +187,19 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-                  <div>
-                    <label htmlFor="category" className="form-label ms-3">Choose Your Industry Category:</label>
-                    <select id="category" className="form-select mb-3 rounded-pill">
-                      <option value="Food and beverage">Food and beverage</option>
-                      <option value="Electrical and Electronics">Electrical and Electronics</option>
-                      <option value="Medical">Medical</option>
-                      <option value="Beaut parlour and Saloon">Beaut parlour and Saloon</option>
-                      <option value="Tour and travellers">Tour and travellers </option>
-                      <option value="Hotels">Hotels</option>
-                      <option value="Others">Others</option>
-
-
-                    </select>
-                  </div>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
-
+                  <div>
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
 
+                  <label htmlFor="category" className="form-label ms-3">category:</label>
+                  <select id="category" className="form-select mb-3 rounded-pill">
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option value="Electronics">Electronics</option>
+                  </select>
+                  </div>
 
 
                   <div className='row'>
