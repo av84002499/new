@@ -18,7 +18,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('http://127.0.0.1:3200/api/userdata/getuserdata', {
+      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('http://127.0.0.1:3200/api/userdata/', {
+      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
