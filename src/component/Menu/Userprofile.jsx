@@ -7,20 +7,6 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
 
-
-  
-    const iframe = document.getElementById("qrcode");
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    const img = iframeDoc.querySelector("img");
-    const anchor = document.createElement("a");
-    anchor.href = img.src;
-    anchor.download = "QR_Code.png";
-    anchor.click();
-
-  
-  
-
-
   const getShopdtls = useCallback(async () => {
     const userId = props.userLogged().userID;
     if (!userId) {
