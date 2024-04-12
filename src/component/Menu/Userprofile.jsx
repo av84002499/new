@@ -18,7 +18,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
+      const response = await fetch('http://127.0.0.1:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,6 +51,7 @@ const Userprofile = (props) => {
   if (shopdtl) {
     document.getElementById('shopname').value = shopdtl.shopname;
     document.getElementById('address').value = shopdtl.address;
+    document.getElementById('category').value = shopdtl.category;
     document.getElementById('fcinumber').value = shopdtl.fcinumber;
     document.getElementById('phonenumber1').value = shopdtl.phonenumber1;
     document.getElementById('phonenumber2').value = shopdtl.phonenumber2;
@@ -70,16 +71,17 @@ const Userprofile = (props) => {
     // const form = document.getElementById('shopdtl');
     const shopname = document.getElementById('shopname').value;
     const address = document.getElementById('address').value;
+    const category = document.getElementById('category').value;
     const fcinumber = document.getElementById('fcinumber').value;
     const phonenumber1 = document.getElementById('phonenumber1').value;
     const phonenumber2 = document.getElementById('phonenumber2').value;
     const gstnumber = document.getElementById('gstnumber').value;
     const aadharnumber = document.getElementById('aadharnumber').value;
-    const formData = { shopname: shopname, address: address, fcinumber: fcinumber, phonenumber1: phonenumber1, phonenumber2: phonenumber2, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
+    const formData = { shopname: shopname, address: address, category: category, fcinumber: fcinumber, phonenumber1: phonenumber1, phonenumber2: phonenumber2, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
 
     console.log(formData);
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
+      const response = await fetch('http://127.0.0.1:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,6 +114,17 @@ const Userprofile = (props) => {
     }
   };
 
+  const logoutUser = async () => {
+    props.logoutUser();
+    Swal.fire({
+      icon: 'success',
+      title: 'Logged Out successfully!',
+      showConfirmButton: false,
+      timer: 3000, // 3 seconds
+    });
+    navigate('/Signin');
+    return;
+  }
   useEffect(() => {
     getShopdtls();
   }, [getShopdtls]);
@@ -132,7 +145,7 @@ const Userprofile = (props) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-auto">
-              <iframe id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/"+encodeURIComponent(props.userLogged().userID)+"&as=value"} width="250" height="250"></iframe>
+              <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
             </div>
           </div>
         </div>
@@ -171,35 +184,46 @@ const Userprofile = (props) => {
               </div>
 
               <div className='col-md-8 p-3'>
-                <h3>Welcome, {props.userLogged().name}</h3>
+                <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
-                  <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required="" />
-                  <label htmlFor="address" className="form-label ms-3">address:</label>
-                  <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required="" />
+                  <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
+                  <label htmlFor="address" className="form-label ms-3">Address:</label>
+                  <div>
+                  <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
+
+                  <label htmlFor="category" className="form-label ms-3">category:</label>
+                  <select id="category" className="form-select mb-3 rounded-pill">
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option value="Electronics">Electronics</option>
+                  </select>
+                  </div>
+
+
                   <div className='row'>
                     <div className='col-sm-6'>
                       <label htmlFor="fcinumber" className="form-label ms-3">FCI Number</label>
-                      <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required="" />
+                      <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required />
                     </div>
                     <div className='col-sm-3'>
                       <label htmlFor="phonenumber1" className="form-label ms-3">Phone Number 1:</label>
-                      <input type="text" id="phonenumber1" className="form-control mb-3 rounded-pill" placeholder="Phone Number1" required="" />
+                      <input type="text" id="phonenumber1" className="form-control mb-3 rounded-pill" placeholder="Phone Number1" required />
                     </div>
                     <div className='col-sm-3'>
                       <label htmlFor="phonenumber2" className="form-label ms-3">Phone Number 2:</label>
-                      <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2" required="" />
+                      <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2" required />
                     </div>
                   </div>
                   <div className='row mb-3'>
                     <div className='col-sm-6'>
                       <label htmlFor="gstnumber" className="form-label ms-3">GST Number:</label>
-                      <input type="text" id="gstnumber" className="form-control mb-3 rounded-pill" placeholder="GST Number" required="" />
+                      <input type="text" id="gstnumber" className="form-control mb-3 rounded-pill" placeholder="GST Number" required />
                     </div>
                     <div className='col-sm-6'>
                       <label htmlFor="aadharnumber" className="form-label ms-3">Aadhar Number:</label>
-                      <input type="text" id="aadharnumber" className="form-control mb-3 rounded-pill" placeholder="Aadhar Number" required="" />
+                      <input type="text" id="aadharnumber" className="form-control mb-3 rounded-pill" placeholder="Aadhar Number" required />
                     </div>
                   </div>
                   <button className="btn btn-success rounded-pill px-3 ms-3" onClick={saveShopdtls}><i className="bi bi-check2-circle"></i> Save</button>

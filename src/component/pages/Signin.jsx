@@ -51,7 +51,7 @@ const Signin = (props) => {
         navigate('/Signin');
       }
 
-      
+
     } catch (error) {
       console.error('Error submitting form:', error.message);
       alert(error.message);
@@ -68,15 +68,15 @@ const Signin = (props) => {
               </div>
               <h1 style={{ textAlign: 'center' }}>Login Form</h1>
               <div>
-                <input type="text" id="email" className="form-control mb-3" placeholder="Username" required="" />
+                <input type="text" id="email" className="form-control mb-3" placeholder="Email" required />
               </div>
               <div>
-                <input type="password" id="password" className="form-control mb-3" placeholder="Password" required="" />
+                <input type="password" id="password" className="form-control mb-3" placeholder="Password" required />
               </div>
               <div>
                 <div className="row mt-2">
                   <div className="col-md-8 m-auto text-end">
-                    <a className="reset_pass" href="">Lost your password?</a>
+                    <a className="reset_pass" href="/getresetpasswordotp">Lost your password?</a>
                   </div>
                   <div className="col-md-4 mt-2">
                     <button type="submit" className="width-35 btn btn-success" onClick={handleSubmit}>
@@ -94,8 +94,11 @@ const Signin = (props) => {
             </div>
 
             <div className="separator">
+              <p className="change_link">or
+                <a href="http://localhost:3000/getloginotp"> <u>Login with OTP</u> </a>
+              </p>
               <p className="change_link">New to site?
-                <a href="https://indiaemenu.com/sign-up" className=""> Create Account </a>
+                <a href="https://indiaemenu.com/sign-up"> <u>Sign Up</u> </a>
               </p>
 
               <div className="clearfix"></div>
