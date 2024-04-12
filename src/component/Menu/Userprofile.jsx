@@ -7,6 +7,17 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
 
+  download() {
+    const canvas = document.querySelector('.modal-body iframe').contentDocument.querySelector('canvas');
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = 'QR_Code.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+
 
   const getShopdtls = useCallback(async () => {
     const userId = props.userLogged().userID;
@@ -138,24 +149,23 @@ const Userprofile = (props) => {
       </div>
 
       <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body m-auto">
-              <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
-            </div>
-            <div class="modal-footer">
-              <a href={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} download="QR_Code.png" class="btn btn-primary">
-                Download QR Code
-              </a>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body m-auto">
+            <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-primary" ref={(ref) => this.downloadRef = ref} onClick={this.download}>
+              Download QR Code
+            </a>
           </div>
         </div>
       </div>
-
+    </div>
 
 
       <div className="card-body">
