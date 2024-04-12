@@ -26,7 +26,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch('hhttps://qmunuback.onrender.com/api/users/signup', {
+      const response = await fetch('https://qmunuback.onrender.com/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
