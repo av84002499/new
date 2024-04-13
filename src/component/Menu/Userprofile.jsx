@@ -2,23 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
+import Qr from './Qr.jsx'
 
 
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
+ 
 
-  const handleDownload = () => {
-    // Create a temporary link element
-    const link = document.createElement('a');
-    // link.href = imageUrl;
-    link.download = 'qrcode.png';
-    // Simulate a click on the link to trigger the download
-    document.body.appendChild(link);
-    link.click();
-    // Clean up by removing the link from the DOM
-    document.body.removeChild(link);
-};
 
   const getShopdtls = useCallback(async () => {
     const userId = props.userLogged().userID;
@@ -158,11 +149,8 @@ const Userprofile = (props) => {
             </div>
             <div class="modal-body text-center">
               <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
-              <div className="modal-body text-center">
-              <img src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"}></img>
-              <button onClick={handleDownload}>Download QR Code</button>
-          </div>
-          </div>
+              <Qr/>
+              </div>
           </div>
         </div>
       </div>
