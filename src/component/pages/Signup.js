@@ -49,7 +49,7 @@ const Signup = () => {
         showConfirmButton: false,
         timer: 3000, // 3 seconds
       });
-      navigate('/Signin');
+      navigate('/https://qmunuback.onrender.com/api/users/sendotp');
 
     } catch (error) {
       console.error('Error signing up:', error.message);
