@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 
-function YourComponent() {
+function YourComponent(props) { // Added props parameter here
     const [imageUrl, setImageUrl] = useState('');
 
-    
     useEffect(() => {
         const generateQRCode = async () => {
             try {
-                const response = await QRCode.toDataURL('src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250">');
+                const qrData = `https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`;
+                const response = await QRCode.toDataURL(qrData);
                 setImageUrl(response);
             } catch (error) {
                 console.log(error);
@@ -16,25 +16,28 @@ function YourComponent() {
         };
 
         generateQRCode();
-    }, []);
+    }, [props]); // Added props to the dependency array
 
     const handleDownload = () => {
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.href = imageUrl;
-        link.download = 'qrcode.png';
-        // Simulate a click on the link to trigger the download
-        document.body.appendChild(link);
-        link.click();
-        // Clean up by removing the link from the DOM
-        document.body.removeChild(link);
+        if (imageUrl) {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'qrcode.png';
+            // Simulate a click on the link to trigger the download
+            document.body.appendChild(link);
+            link.click();
+            // Clean up by removing the link from the DOM
+            document.body.removeChild(link);
+        }
     };
 
     return (
         <div>
             {imageUrl && (
                 <div>
-                <button onClick={handleDownload}>Download QR Code</button>
+                    <img src={imageUrl} alt="QR Code" />
+                    <button onClick={handleDownload}>Download QR Code</button>
                 </div>
             )}
         </div>
