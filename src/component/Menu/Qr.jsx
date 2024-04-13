@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 
-function YourComponent(props) {
+function YourComponent() {
     const [imageUrl, setImageUrl] = useState('');
 
+    
     useEffect(() => {
         const generateQRCode = async () => {
             try {
-                const response = await QRCode.toDataURL('https://new-sage-nine.vercel.app/Menu/' + encodeURIComponent(props.userLogged().userID));
+                const response = await QRCode.toDataURL('your_text_here');
                 setImageUrl(response);
             } catch (error) {
                 console.log(error);
@@ -15,7 +16,7 @@ function YourComponent(props) {
         };
 
         generateQRCode();
-    }, [props]);
+    }, []);
 
     const handleDownload = () => {
         // Create a temporary link element
@@ -31,20 +32,11 @@ function YourComponent(props) {
 
     return (
         <div>
-            <div className="modal fade" id="qrModal" tabIndex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="qrModalLabel">QR Code</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body text-center">
-                            <img src={imageUrl} alt="QR Code" />
-                            <button onClick={handleDownload}>Download QR Code</button>
-                        </div>
-                    </div>
+            {imageUrl && (
+                <div>
+                <button onClick={handleDownload}>Download QR Code</button>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
