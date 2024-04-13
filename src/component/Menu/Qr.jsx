@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import QRCode from 'qrcode.react';
 
-function QRCodeComponent() {
+function QRCodeComponent(props) {
   const qrCodeRef = useRef(null);
 
   const downloadQRCode = () => {
@@ -17,7 +17,10 @@ function QRCodeComponent() {
 
   return (
     <div>
-      <QRCode ref={qrCodeRef} value="YourDataHere" />
+      <QRCode
+        ref={qrCodeRef}
+        value={`https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`}
+      />
       <button onClick={downloadQRCode}>Download QR Code</button>
     </div>
   );
