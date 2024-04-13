@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import QRCode from 'qrcode';
 
 function YourComponent(props) {
     const [imageUrl, setImageUrl] = useState('');
-    const [iframeUrl, setIframeUrl] = useState('');
 
     useEffect(() => {
         const generateQRCode = async () => {
             try {
-                const response = await QRCode.toDataURL('your_text_here');
-                setImageUrl(response);
+                // Fetch the QR code image URL from the API
+                const response = await fetch(`https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`);
+                const data = await response.blob();
+                const url = window.URL.createObjectURL(data);
+                setImageUrl(url);
             } catch (error) {
                 console.log(error);
             }
         };
 
         generateQRCode();
-
-        // Fetch the iframe URL
-        const iframe = document.getElementById('qrcode');
-        if (iframe) {
-            setIframeUrl(iframe.src);
-        }
     }, []);
 
-    const handleDownload = (url, fileName) => {
+    const handleDownload = () => {
         // Create a temporary link element
         const link = document.createElement('a');
-        link.href = url;
-        link.download = fileName;
+        link.href = imageUrl;
+        link.download = 'qrcode.png';
         // Simulate a click on the link to trigger the download
         document.body.appendChild(link);
         link.click();
@@ -40,18 +35,9 @@ function YourComponent(props) {
         <div>
             {imageUrl && (
                 <div>
-                    <img src={imageUrl} alt="QR Code" />
-                    <button onClick={() => handleDownload(imageUrl, 'qrcode.png')}>
-                        Download QR Code
-                    </button>
-                </div>
-            )}
-            {iframeUrl && (
-                <div>
-                    <iframe title='ShopQR' id="qrcode" src={iframeUrl} width="250" height="250"></iframe>
-                    <button onClick={() => handleDownload(iframeUrl, 'iframe_qrcode.png')}>
-                        Download Iframe QR Code
-                    </button>
+                    <img src={imageUrl} alt="QR Code" width="250" height="250" />
+                    {/* Button to download the QR code */}
+                    <button onClick={handleDownload}>Download QR Code</button>
                 </div>
             )}
         </div>
