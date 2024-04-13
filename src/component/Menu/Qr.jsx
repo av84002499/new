@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 
-function YourComponent(props) {
+function YourComponent() {
     const [imageUrl, setImageUrl] = useState('');
 
     
