@@ -159,7 +159,7 @@ const Userprofile = (props) => {
             <div class="modal-body text-center">
               <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
               <div className="modal-body text-center">
-              <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
+              <img src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"}></img>
               <button onClick={handleDownload}>Download QR Code</button>
           </div>
           </div>
