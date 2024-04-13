@@ -2,23 +2,26 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
+import Qr from './Qr.jsx'
+
 
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
+ 
 
 
   const getShopdtls = useCallback(async () => {
     const userId = props.userLogged().userID;
     if (!userId) {
       alert('Please Login again!');
-      navigate('/Signin');
+      navigate('/getloginotp');
       return;
     }
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('http://127.0.0.1:3200/api/userdata/getuserdata', {
+      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +84,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('http://127.0.0.1:3200/api/userdata/', {
+      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -144,12 +147,15 @@ const Userprofile = (props) => {
               <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body m-auto">
+            <div class="modal-body text-center">
               <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
-            </div>
+              <Qr/>
+              </div>
           </div>
         </div>
       </div>
+
+
 
 
       <div className="card-body">
@@ -191,14 +197,14 @@ const Userprofile = (props) => {
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
                   <div>
-                  <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
+                    <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
 
-                  <label htmlFor="category" className="form-label ms-3">category:</label>
-                  <select id="category" className="form-select mb-3 rounded-pill">
-                    <option value="Clothing">Clothing</option>
-                    <option value="Books">Books</option>
-                    <option value="Electronics">Electronics</option>
-                  </select>
+                    <label htmlFor="category" className="form-label ms-3">category:</label>
+                    <select id="category" className="form-select mb-3 rounded-pill">
+                      <option value="Clothing">Clothing</option>
+                      <option value="Books">Books</option>
+                      <option value="Electronics">Electronics</option>
+                    </select>
                   </div>
 
 

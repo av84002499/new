@@ -19,7 +19,7 @@ const Products = (props) => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
             alert('Please Login again!');
-            navigate('/Signin');
+            navigate('/getloginotp');
             return;
         }
         console.log('Adding New product');
