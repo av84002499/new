@@ -86,10 +86,10 @@ const LoginWithOTP = (props) => {
                         <div className="clearfix"></div>
                         <div className="separator">
                             <p className="change_link">or
-                                <a href="https://qmunuback.onrender.com/api/users/signin"> <u>Login with Password</u> </a>
+                                <a href="https://new-sage-nine.vercel.app/getloginotp"> <u>Login with Password</u> </a>
                             </p>
                             <p className="change_link">New to site?
-                                <a href="https://qmunuback.onrender.com/api/users/signup"> <u>Sign Up</u> </a>
+                                <a href="https://new-sage-nine.vercel.app/signup"> <u>Sign Up</u> </a>
                             </p>
                             <div className="clearfix"></div>
                             <br />
