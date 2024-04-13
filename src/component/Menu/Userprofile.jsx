@@ -193,20 +193,21 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
+                <label htmlFor="category" className="form-label ms-3">category:</label>
+                    <select id="category" className="form-select mb-3 rounded-pill">
+                      <option value="Food and beverage">Food and beverage</option>
+                      <option value="Electrical and Electronics">Electrical and Electronics</option>
+                      <option value="Medical">Medical</option>
+                      <option value="Beaut parlour and Saloon">Beaut parlour and Saloon</option>
+                      <option value="Tour and travellers">Tour and travellers</option>
+                      <option value="Hotels">Hotels</option>
+                      <option value="Others">Others</option>
+
+                    </select>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
-                  <div>
-                    <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="Address" required />
-
-                    <label htmlFor="category" className="form-label ms-3">category:</label>
-                    <select id="category" className="form-select mb-3 rounded-pill">
-                      <option value="Clothing">Clothing</option>
-                      <option value="Books">Books</option>
-                      <option value="Electronics">Electronics</option>
-                    </select>
-                  </div>
-
+                  <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required />
 
                   <div className='row'>
                     <div className='col-sm-6'>
