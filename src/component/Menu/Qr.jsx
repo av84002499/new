@@ -18,8 +18,12 @@ function QRCodeComponent(props) {
   return (
     <div>
       <QRCode
-        ref={qrCodeRef}
         value={`https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`}
+        size={250}
+        level={"H"}
+        includeMargin={true}
+        renderAs={"svg"}
+        ref={qrCodeRef}
       />
       <button onClick={downloadQRCode}>Download QR Code</button>
     </div>
