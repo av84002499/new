@@ -4,7 +4,6 @@ import QRCode from 'qrcode';
 function YourComponent() {
     const [imageUrl, setImageUrl] = useState('');
 
-    
     useEffect(() => {
         const generateQRCode = async () => {
             try {
@@ -34,7 +33,8 @@ function YourComponent() {
         <div>
             {imageUrl && (
                 <div>
-                <button onClick={handleDownload}>Download QR Code</button>
+                    <img src={imageUrl} alt="QR Code" />
+                    <button onClick={handleDownload}>Download QR Code</button>
                 </div>
             )}
         </div>
