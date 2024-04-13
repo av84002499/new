@@ -32,7 +32,7 @@ const Userprofile = (props) => {
 
       if (!response.ok) {
         alert('Failed to load!!');
-        navigate('/Signin');
+        navigate('/getloginotp');
         return;
       }
       try {
@@ -68,7 +68,7 @@ const Userprofile = (props) => {
     const userId = props.userLogged().userID;
     if (!userId) {
       alert('Please Login again!');
-      navigate('/Signin');
+      navigate('/getloginotp');
       return;
     }
     // const form = document.getElementById('shopdtl');
@@ -125,7 +125,7 @@ const Userprofile = (props) => {
       showConfirmButton: false,
       timer: 3000, // 3 seconds
     });
-    navigate('/Signin');
+    navigate('/getloginotp');
     return;
   }
   useEffect(() => {
