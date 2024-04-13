@@ -1,47 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import QRCode from 'qrcode.react';
 
-function YourComponent(props) {
-    const [imageUrl, setImageUrl] = useState('');
+function QRCodeComponent() {
+  const qrCodeRef = useRef(null);
 
-    useEffect(() => {
-        const generateQRCode = async () => {
-            try {
-                // Fetch the QR code image URL from the API
-                const response = await fetch(`https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`);
-                const data = await response.blob();
-                const url = window.URL.createObjectURL(data);
-                setImageUrl(url);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+  const downloadQRCode = () => {
+    const canvas = qrCodeRef.current.children[0];
+    const url = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'QRCode.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
-        generateQRCode();
-    }, []);
-
-    const handleDownload = () => {
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.href = imageUrl;
-        link.download = 'qrcode.png';
-        // Simulate a click on the link to trigger the download
-        document.body.appendChild(link);
-        link.click();
-        // Clean up by removing the link from the DOM
-        document.body.removeChild(link);
-    };
-
-    return (
-        <div>
-            {imageUrl && (
-                <div>
-                    <img src={imageUrl} alt="QR Code" width="250" height="250" />
-                    {/* Button to download the QR code */}
-                    <button onClick={handleDownload}>Download QR Code</button>
-                </div>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      <QRCode ref={qrCodeRef} value="YourDataHere" />
+      <button onClick={downloadQRCode}>Download QR Code</button>
+    </div>
+  );
 }
 
-export default YourComponent;
+export default QRCodeComponent;
