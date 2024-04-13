@@ -73,10 +73,10 @@ const GetLoginOTP = (props) => {
                         <div className="clearfix"></div>
                         <div className="separator">
                             <p className="change_link">or
-                                <a href="http://localhost:3000/signin"> <u>Login with Password</u> </a>
+                                <a href="https://new-sage-nine.vercel.app/signin"> <u>Login with Password</u> </a>
                             </p>
                             <p className="change_link">New to site?
-                                <a href="https://indiaemenu.com/sign-up"> <u>Sign Up</u> </a>
+                                <a href="https://new-sage-nine.vercel.app/sign-up"> <u>Sign Up</u> </a>
                             </p>
                             <div className="clearfix"></div>
                             <br />
