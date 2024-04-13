@@ -66,10 +66,10 @@ const GetResetPasswordOTP = (props) => {
                         <div className="clearfix"></div>
                         <div className="separator">
                             <p className="change_link">Remember Password?
-                                <a href="http://localhost:3000/signin"> <u>Login</u> </a>
+                                <a href="https://qmunuback.onrender.com/api/users/signin"> <u>Login</u> </a>
                             </p>
                             <p className="change_link">New to site?
-                                <a href="https://indiaemenu.com/sign-up"> <u>Sign Up</u> </a>
+                                <a href="https://qmunuback.onrender.com/api/users/signup"> <u>Sign Up</u> </a>
                             </p>
                             <div className="clearfix"></div>
                             <br />
