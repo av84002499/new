@@ -169,6 +169,8 @@ const Userprofile = (props) => {
           value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
           size={250}
         />
+        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Your Text Here</span>
+
       </div>
       <button onClick={handleDownload}>Download QR Code</button>
     </div>
