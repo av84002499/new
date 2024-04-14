@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -6,6 +6,11 @@ import Swal from 'sweetalert2';
 
 const Signin = (props) => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -71,22 +76,43 @@ const Signin = (props) => {
                 <input type="text" id="email" className="form-control mb-3" placeholder="Email" required />
               </div>
               <div>
-                <input type="password" id="password" className="form-control mb-3" placeholder="Password" required />
-              </div>
-              <div>
-                <div className="row mt-2">
-                  <div className="col-md-8 m-auto text-end">
-                    <a className="reset_pass" href="/getresetpasswordotp">Lost your password?</a>
-                  </div>
-                  <div className="col-md-4 mt-2">
-                    <button type="submit" className="width-35 btn btn-success" onClick={handleSubmit}>
-                      <i className="ace-icon fa fa-key"></i>
-                      <span className="bigger-110">Login</span>
-                    </button>
-                  </div>
-
+                <div style={{ position: 'relative' }}>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    id="password"
+                    className="form-control mb-3"
+                    placeholder="Password"
+                    required
+                  />
+                  <i
+                    className={showPassword ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'}
+                    onClick={togglePasswordVisibility}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      right: '10px',
+                      transform: 'translateY(-50%)',
+                      cursor: 'pointer'
+                    }}
+                  ></i>
                 </div>
               </div>
+
+
+                <div>
+                  <div className="row mt-2">
+                    <div className="col-md-8 m-auto text-end">
+                      <a className="reset_pass" href="/getresetpasswordotp">Lost your password?</a>
+                    </div>
+                    <div className="col-md-4 mt-2">
+                      <button type="submit" className="width-35 btn btn-success" onClick={handleSubmit}>
+                        <i className="ace-icon fa fa-key"></i>
+                        <span className="bigger-110">Login</span>
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
 
             </form>
 
