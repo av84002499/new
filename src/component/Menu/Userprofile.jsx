@@ -255,6 +255,7 @@ const Userprofile = (props) => {
                     </div>
                   </div>
                   <button className="btn btn-success rounded-pill px-3 ms-3" onClick={saveShopdtls}><i className="bi bi-check2-circle"></i> Save</button>
+                  <button className="btn btn-success rounded-pill px-3 ms-3" onClick={saveShopdtls}><i className="bi bi-check2-circle"></i> Edit</button>
 
                 </form>
               </div>
