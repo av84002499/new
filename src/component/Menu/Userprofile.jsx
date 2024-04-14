@@ -169,8 +169,19 @@ const Userprofile = (props) => {
           value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
           size={250}
         />
-        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Your Text Here</span>
-
+        <img
+        src="./qccode.png"
+        alt="logo"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '50px', // Logo width
+          height: '50px', // Logo height
+          zIndex: 1, // Ensure logo is above QR code
+        }}
+      />
       </div>
       <button onClick={handleDownload}>Download QR Code</button>
     </div>
