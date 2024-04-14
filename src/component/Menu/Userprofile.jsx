@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback,useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import QRCode from 'qrcode.react';
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
-  
+
   const qrCodeRef = useRef(null);
 
   const handleDownload = () => {
@@ -24,7 +24,7 @@ const Userprofile = (props) => {
       });
     });
   };
- 
+
 
 
   const getShopdtls = useCallback(async () => {
@@ -156,38 +156,39 @@ const Userprofile = (props) => {
         </h2>
       </div>
 
-      <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body text-center">
-      <div ref={qrCodeRef}>
-        <QRCode
-          value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
-          size={250}
-        />
-        <img
-        src="./qccode.png"
-        alt="logo"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '50px', // Logo width
-          height: '50px', // Logo height
-          zIndex: 1, // Ensure logo is above QR code
-        }}
-      />
+      <div className="modal fade" id="qrModal" tabIndex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="qrModalLabel">QR Code</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <button onClick={handleDownload}>Download QR Code</button>
-    </div>
-          </div>
+      <div className="modal-body text-center">
+        <div ref={qrCodeRef}>
+          <QRCode
+            value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
+            size={250}
+          />
+          <img
+            src="./qccode.png"
+            alt="logo"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '50px', // Logo width
+              height: '50px', // Logo height
+              zIndex: 1, // Ensure logo is above QR code
+            }}
+          />
         </div>
+        <button onClick={handleDownload}>Download QR Code</button>
       </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -227,17 +228,17 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-                <label htmlFor="category" className="form-label ms-3">category:</label>
-                    <select id="category" className="form-select mb-3 rounded-pill">
-                      <option value="Food and beverage">Food and beverage</option>
-                      <option value="Electrical and Electronics">Electrical and Electronics</option>
-                      <option value="Medical">Medical</option>
-                      <option value="Beaut parlour and Saloon">Beaut parlour and Saloon</option>
-                      <option value="Tour and travellers">Tour and travellers</option>
-                      <option value="Hotels">Hotels</option>
-                      <option value="Others">Others</option>
+                  <label htmlFor="category" className="form-label ms-3">category:</label>
+                  <select id="category" className="form-select mb-3 rounded-pill">
+                    <option value="Food and beverage">Food and beverage</option>
+                    <option value="Electrical and Electronics">Electrical and Electronics</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Beaut parlour and Saloon">Beaut parlour and Saloon</option>
+                    <option value="Tour and travellers">Tour and travellers</option>
+                    <option value="Hotels">Hotels</option>
+                    <option value="Others">Others</option>
 
-                    </select>
+                  </select>
                   <label htmlFor="shopname" className="form-label ms-3">Shop Name:</label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
