@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
+
 
 
 
@@ -10,12 +12,19 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
   
+  const iframeRef = useRef(null);
 
   const handleDownload = () => {
-    const canvas = document.querySelector('canvas');
-    canvas.toBlob((blob) => {
-      saveAs(blob, 'qrcode.png');
-    });
+    const iframe = iframeRef.current;
+
+    // Ensure iframe is loaded
+    if (iframe && iframe.contentWindow.document.readyState === 'complete') {
+      html2canvas(iframe.contentWindow.document.body).then((canvas) => {
+        canvas.toBlob((blob) => {
+          saveAs(blob, 'qrcode.png');
+        });
+      });
+    }
   }
  
 
