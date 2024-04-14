@@ -2,11 +2,25 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
+import { saveAs } from 'file-saver';
+import QRCode from 'qrcode.react';
+
 
 
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
+  const [text, setText] = useState('');
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleDownload = () => {
+    const canvas = document.querySelector('canvas');
+    canvas.toBlob((blob) => {
+      saveAs(blob, 'qrcode.png');
+    });
+  }
  
 
 
@@ -148,6 +162,16 @@ const Userprofile = (props) => {
             </div>
             <div class="modal-body text-center">
               <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
+              <div>
+              <input
+                type="text"
+                value={text}
+                onChange={handleInputChange}
+                placeholder="Enter text to generate QR code"
+              />
+              <QRCode value={text} />
+              <button onClick={handleDownload}>Download QR Code</button>
+            </div>
               </div>
           </div>
         </div>
