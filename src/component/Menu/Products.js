@@ -69,7 +69,7 @@ const Products = (props) => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
             alert('Please Login again!');
-            navigate('/Signin');
+            navigate('/getloginotp');
             return;
 
 
@@ -87,7 +87,7 @@ const Products = (props) => {
 
             if (!response.ok) {
                 console.log('Failed to load products!!');
-                navigate('/Signin');
+                navigate('/getloginotp');
                 return;
             }
             try {
@@ -109,7 +109,7 @@ const Products = (props) => {
         const userId = props.userLogged.userID;
         if (!userId) {
             alert('Please Login again!');
-            navigate('/Signin');
+            navigate('/getloginotp');
             return;
         }
 
@@ -135,7 +135,7 @@ const Products = (props) => {
             getProducts();
         } catch (error) {
             console.error('Error deleting product:', error.message);
-            navigate('/Signin');
+            navigate('/getloginotp');
             return;
         }
     };

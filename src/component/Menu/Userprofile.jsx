@@ -7,19 +7,7 @@ import Swal from 'sweetalert2';
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
-
-  const handleDownload = () => {
-    // Create a temporary link element
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = 'qrcode.png';
-    // Simulate a click on the link to trigger the download
-    document.body.appendChild(link);
-    link.click();
-    // Clean up by removing the link from the DOM
-    document.body.removeChild(link);
-};
+ 
 
 
   const getShopdtls = useCallback(async () => {
@@ -136,7 +124,7 @@ const Userprofile = (props) => {
       showConfirmButton: false,
       timer: 3000, // 3 seconds
     });
-    navigate('/getloginotp');
+    navigate('/Signin');
     return;
   }
   useEffect(() => {
@@ -160,12 +148,7 @@ const Userprofile = (props) => {
             </div>
             <div class="modal-body text-center">
               <iframe title='ShopQR' id="qrcode" src={"https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/" + encodeURIComponent(props.userLogged().userID) + "&as=value"} width="250" height="250"></iframe>
-              {imageUrl && (
-                <div>
-                    <img src={imageUrl} alt="QR Code" />
-                    <button onClick={handleDownload}>Download QR Code</button>
-                </div>
-            )}              </div>
+              </div>
           </div>
         </div>
       </div>
