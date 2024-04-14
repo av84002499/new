@@ -4,6 +4,7 @@ import Products from './Products.js';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
+import QRCode from 'qrcode.react';
 
 
 
@@ -12,20 +13,17 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
   
-  const iframeRef = useRef(null);
+  const qrCodeRef = useRef(null);
 
   const handleDownload = () => {
-    const iframe = iframeRef.current;
+    const qrCodeNode = qrCodeRef.current;
 
-    // Ensure iframe is loaded
-    if (iframe && iframe.contentWindow.document.readyState === 'complete') {
-      html2canvas(iframe.contentWindow.document.body).then((canvas) => {
-        canvas.toBlob((blob) => {
-          saveAs(blob, 'qrcode.png');
-        });
+    html2canvas(qrCodeNode).then((canvas) => {
+      canvas.toBlob((blob) => {
+        saveAs(blob, 'qrcode.png');
       });
-    }
-  }
+    });
+  };
  
 
 
@@ -166,13 +164,12 @@ const Userprofile = (props) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body text-center">
-      <iframe
-        title="ShopQR"
-        ref={iframeRef}
-        src={`https://api.mimfa.net/qrcode?value=https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}&as=value`}
-        width="250"
-        height="250"
-      ></iframe>
+      <div ref={qrCodeRef}>
+        <QRCode
+          value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
+          size={250}
+        />
+      </div>
       <button onClick={handleDownload}>Download QR Code</button>
     </div>
           </div>
