@@ -35,7 +35,6 @@ const Menu = () => {
                         <div className="inner-banner-text text-center">
 
                             <h1>{shopdtl.shopname}</h1>
-                            <h2>Best Restaurant at</h2>
                             <p>{shopdtl.address}
                             </p>
                         </div>
