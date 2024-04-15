@@ -141,7 +141,7 @@ const Userprofile = (props) => {
       showConfirmButton: false,
       timer: 3000, // 3 seconds
     });
-    navigate('/Signin');
+    navigate('/getloginotp');
     return;
   }
   useEffect(() => {
