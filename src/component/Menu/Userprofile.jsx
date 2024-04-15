@@ -188,7 +188,7 @@ const Userprofile = (props) => {
     alignItems: 'center'
   }}
 >
-  QC Updated
+  QC
 </text>
         </div>
         <button onClick={handleDownload}>Download QR Code</button>
