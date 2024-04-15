@@ -169,9 +169,8 @@ const Userprofile = (props) => {
             value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
             size={250}
           />
-          <img
-            src="./qccode.png"
-            alt="logo"
+          <text
+            QC
             style={{
               position: 'absolute',
               top: '50%',
