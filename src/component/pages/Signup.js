@@ -52,9 +52,9 @@ const Signup = () => {
       navigate('/getloginotp');
 
     } catch (error) {
-      console.error('Error signing up:', error.message);
+      console.error('Email already exists:', error.message);
       // Handle error, show error message to the user
-      setErrorMessage(error.message || 'Error signing up. Please try again later.');
+      setErrorMessage(error.message || 'Email already exists.');
     }
 
 
