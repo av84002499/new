@@ -170,17 +170,26 @@ const Userprofile = (props) => {
             size={250}
           />
           <text
-            QC
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '50px', // Logo width
-              height: '50px', // Logo height
-              zIndex: 1, // Ensure logo is above QR code
-            }}
-          />
+  style={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50px', // Logo width
+    height: '50px', // Logo height
+    zIndex: 1, // Ensure logo is above QR code
+    backgroundColor: 'blue', // Example background color
+    color: 'white', // Example text color
+    textAlign: 'center', // Center text horizontally
+    fontSize: '20px', // Example font size
+    borderRadius: '50%', // Make it a circle
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}
+>
+  QC Updated
+</text>
         </div>
         <button onClick={handleDownload}>Download QR Code</button>
       </div>
