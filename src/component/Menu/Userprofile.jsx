@@ -248,7 +248,7 @@ const Userprofile = (props) => {
 
                   </select>
                   <label htmlFor="name" className="form-label ms-3"> Name:</label>
-                  <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Shop Name" required />
+                  <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Name" required />
                   <label htmlFor="address" className="form-label ms-3">Address:</label>
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required />
 
