@@ -53,8 +53,6 @@ const Signup = () => {
 
     } catch (error) {
       console.error('Email already exists:', error.message);
-      // Handle error, show error message to the user
-      setErrorMessage(error.message || 'Email already exists.');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
