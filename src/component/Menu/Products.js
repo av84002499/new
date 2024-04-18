@@ -6,13 +6,13 @@ import Swal from 'sweetalert2';
 const Products = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([])
-    
+
     const confirmDelete = (productName, productId) => {
         if (window.confirm(`Are you sure you want to delete ${productName}?`)) {
             deleteProduct(productName, productId);
         }
     };
-    
+
 
     const addProduct = async (event) => {
         event.preventDefault();
@@ -23,46 +23,24 @@ const Products = (props) => {
             return;
         }
         console.log('Adding New product');
-
-        const name = document.getElementById('prodName').value;
-        const price = document.getElementById('prodPrice').value;
-        const sizes = document.getElementById('Prodsizes').value;
-        var formData = { name: name, price: price, ownerId: ownerId, sizes: sizes }
-
+    
+        const nameInput = document.getElementById('prodName');
+        const priceInput = document.getElementById('prodPrice');
+        const sizesInput = document.getElementById('Prodsizes');
+    
+        const name = nameInput.value;
+        const price = priceInput.value;
+        const sizes = sizesInput.value;
+        const formData = { name: name, price: price, ownerId: ownerId, sizes: sizes };
+    
         console.log('Product:', formData);
-
-        try {
-            const response = await fetch('https://qmunuback.onrender.com/api/products/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": props.userLogged.token,
-                },
-                body: JSON.stringify(formData),
-            });
-            if (!response.ok) {
-                console.log('Failed to Save!!');
-                return;
-            }
-            try {
-                const responseData = await response.json();
-                console.log(responseData);
-                Swal.fire({
-                    icon: 'success',
-                    title: name + ' added successfully!',
-                    showConfirmButton: false,
-                    timer: 3000, // 3 seconds
-                });
-                getProducts();
-            }
-            catch {
-                console.log('Something went wrong!!');
-            }
-        }
-        catch (error) {
-            console.error('Error saving details:', error.message);
-        }
+    
+        // Reset input fields after submission
+        nameInput.value = '';
+        priceInput.value = '';
+        sizesInput.value = '';
     }
+    
 
 
     const getProducts = useCallback(async () => {
@@ -177,7 +155,7 @@ const Products = (props) => {
 
                                     <div className='position-absolute top-0 end-0 m-3'>
                                         <button type='button' className='btn btn-sm btn-danger rounded-pill float-end' onClick={() => confirmDelete(product.name, product._id)}><i className="bi bi-trash"></i></button>
-                                        
+
                                     </div>
 
                                 </div>
