@@ -37,7 +37,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
+      const response = await fetch('http://51.20.40.163:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const Userprofile = (props) => {
     document.getElementById('phonenumber2').value = shopdtl.phonenumber2;
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
-    document.getElementById('profimg').src = 'https://qmunuback.onrender.com/uploads/' + shopdtl.imageUrl;
+    document.getElementById('profimg').src = 'http://51.20.40.163:3200/uploads/' + shopdtl.imageUrl;
   }
 
   const saveShopdtls = async (event) => {
@@ -100,7 +100,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
+      const response = await fetch('http://51.20.40.163:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -220,7 +220,7 @@ const Userprofile = (props) => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
-                        <form id='shopImgForm' action="https://qmunuback.onrender.com/api/upload/shopimg" method="post" encType="multipart/form-data">
+                        <form id='shopImgForm' action="http://51.20.40.163:3200/api/upload/shopimg" method="post" encType="multipart/form-data">
                           <input className="form-control mb-3 rounded-pill d-none" type="text" id="userId" name="userId" defaultValue={props.userLogged().userID} />
                           <input className="form-control mb-3 rounded-pill" type="file" id="shopimg" name="imageUrl" accept="image/*" required />
 
@@ -237,8 +237,9 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-                  <label htmlFor="category" className="form-label ms-3">category:</label>
+                  <label htmlFor="category" className="form-label ms-3">Category:</label>
                   <select id="category" className="form-select mb-3 rounded-pill">
+                    <option value="Food and beverage">Choose your category</option>
                     <option value="Food and beverage">Food and beverage</option>
                     <option value="Electrical and Electronics">Electrical and Electronics</option>
                     <option value="Medical">Medical</option>
@@ -255,8 +256,10 @@ const Userprofile = (props) => {
 
                   <div className='row'>
                     <div className='col-sm-6'>
-                      <label htmlFor="fcinumber" className="form-label ms-3">FCI Number</label>
-                      <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="FCI Number" required />
+                      
+                    <label htmlFor="fcinumber" className="form-label ms-3">Registration number:</label>
+                    <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="Registration number" required />
+
                     </div>
                     <div className='col-sm-3'>
                       <label htmlFor="phonenumber1" className="form-label ms-3">Phone Number 1:</label>
