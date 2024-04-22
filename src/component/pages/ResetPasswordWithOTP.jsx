@@ -19,7 +19,7 @@ const ResetPasswordWithOTP = (props) => {
         try {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            const response = await fetch('https://qmunuback.onrender.com/api/users/resetPasswordWithOTP', {
+            const response = await fetch('http://51.20.40.163:3200/api/users/resetPasswordWithOTP', {
                 method: 'POST',
                 headers: myHeaders,
                 body: JSON.stringify({ email: email, otp: otp, newPassword: password }),

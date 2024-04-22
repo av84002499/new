@@ -43,18 +43,34 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
+      
       <Routes>
         <Route
           key="Home"
           path="/"
-          element={<Home userLogged={getUserLogged} />}
+          element={
+            <>
+             <Navbar />
+            <Home userLogged={getUserLogged} 
+          />
+            </>
+          }
         />
-        <Route key="Menu" path="/Menu/:id" element={<Menu />} />
+        <Route key="Menu" path="/Menu/:id" element={
+        <>
+        <Navbar />
+        <Menu />
+        </>
+        } />
         <Route
           key="Home"
           path="/Home"
-          element={<Home userLogged={getUserLogged} />}
+          element={
+          <>
+            <Navbar />
+            <Home userLogged={getUserLogged} />
+            </>
+        }
         />
         <Route key="Signup" path="/Signup" element={<Signup />} />
         <Route

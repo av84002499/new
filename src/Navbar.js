@@ -60,11 +60,7 @@ const Navbar = () => {
                   SignUp
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/userprofile">
-                  Dashboard
-                </Link>
-              </li>
+             
             </ul>
           </div>
         </div>
