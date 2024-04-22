@@ -47,7 +47,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('http://51.20.40.163:3200/api/products/', {
+            const response = await fetch('https://qmunuback.onrender.com/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -88,7 +88,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('http://51.20.40.163:3200/api/products/myProducts', {
+            const response = await fetch('https://qmunuback.onrender.com/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'http://51.20.40.163:3200/api/products/' + prodId;
+            const url = 'https://qmunuback.onrender.com/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -168,7 +168,7 @@ const Products = (props) => {
                             <div className="card m-3 border-0">
                                 <div className="menu-item">
                                     <div className="menu-item-thumbnail">
-                                        <img src={'http://51.20.40.163:3200/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                        <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
                                     </div>
                                     <div className="menu-item-description position-relative">
                                         <h5>{product.name}</h5>
