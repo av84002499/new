@@ -103,10 +103,10 @@ const Signup = () => {
                             id="desirePassword"
                             placeholder="Desired Password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}bi bi-eye-fill
                             required
                           />
-                            <i className={showPassword ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'} onClick={togglePasswordVisibility}></i>
+                            <i className={showPassword ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'} onClick={togglePasswordVisibility}></i>
                           
                         </div>
                       </div>

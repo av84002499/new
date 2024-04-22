@@ -85,7 +85,7 @@ const Signin = (props) => {
                     required
                   />
                   <i
-                    className={showPassword ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'}
+                    className={showPassword ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'}
                     onClick={togglePasswordVisibility}
                     style={{
                       position: 'absolute',
