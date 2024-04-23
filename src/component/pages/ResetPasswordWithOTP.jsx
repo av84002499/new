@@ -97,7 +97,7 @@ const ResetPasswordWithOTP = (props) => {
                                 <a href="https://www.quickcatalog.in/getloginotp"> <u>Login</u> </a>
                             </p>
                             <p className="change_link">New to site?
-                                <a href="https://www.quickcatalog.in/signup"> <u>Sign Up</u> </a>
+                                <a href="https://www.quickcatalog.in/signup"> <u>SignUp</u> </a>
                             </p>
                             <div className="clearfix"></div>
                             <br />
