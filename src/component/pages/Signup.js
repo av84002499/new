@@ -154,7 +154,7 @@ const Signup = () => {
 
                     <div className="row">
                       <div className="col-md-6">
-                      <a href="https://www.quickcatalog.in/signup"> <u>Signin</u> </a>
+                      <a href="https://www.quickcatalog.in/signin"> <u>Signin</u> </a>
                       
                       </div>
 
