@@ -154,10 +154,8 @@ const Signup = () => {
 
                     <div className="row">
                       <div className="col-md-6">
-                        <a href="hhttps://www.quickcatalog.in/getloginotp">
-                          {' '}
-                          <i className="fa fa-user"> Sign In </i>{' '}
-                        </a>
+                      <a href="https://www.quickcatalog.in/signup"> <u>Signin</u> </a>
+                      
                       </div>
 
                     </div>
