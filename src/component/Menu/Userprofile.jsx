@@ -13,6 +13,8 @@ const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
 
+  
+
   const qrCodeRef = useRef(null);
 
   const handleDownload = () => {
@@ -77,6 +79,7 @@ const Userprofile = (props) => {
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     document.getElementById('profimg').src = 'https://qmunuback.onrender.com/uploads/' + shopdtl.imageUrl;
+    
   }
 
   const saveShopdtls = async (event) => {
@@ -152,8 +155,9 @@ const Userprofile = (props) => {
       <div className="card-header text-center text-white" style={{ backgroundColor: '#2a5c99' }}>
         <h2 className="tm-hero-title mb-0 position-relative">
           My Profile
-          <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"></i></button>
+          <button type="button"  className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"></i></button>
         </h2>
+        
       </div>
 
       <div className="modal fade" id="qrModal" tabIndex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
@@ -237,7 +241,7 @@ const Userprofile = (props) => {
                 <h3>Welcome, {props.userLogged().name}<button className='btn btn-sm btn-danger rounded-pill float-end' onClick={logoutUser}>Logout</button></h3>
                 <hr />
                 <form className='m-3' id='shopdtl'>
-                  <label htmlFor="category" className="form-label ms-3">Category:</label>
+                  <label htmlFor="category" className="form-label ms-3"><i class="bi bi-star-fill"></i>Category:</label>
                   <select id="category" className="form-select mb-3 rounded-pill">
                     <option value="Food and beverage">Choose your category</option>
                     <option value="Food and beverage">Food and beverage</option>
@@ -249,9 +253,9 @@ const Userprofile = (props) => {
                     <option value="Others">Others</option>
 
                   </select>
-                  <label htmlFor="name" className="form-label ms-3"> Name:</label>
+                  <label htmlFor="name" className="form-label ms-3"> <i class="bi bi-star-fill"></i>Name: </label>
                   <input type="text" id="shopname" className="form-control mb-3 rounded-pill" placeholder="Name" required />
-                  <label htmlFor="address" className="form-label ms-3">Address:</label>
+                  <label htmlFor="address" className="form-label ms-3"><i class="bi bi-star-fill"></i>Address:</label>
                   <input type="text" id="address" className="form-control mb-3 rounded-pill" placeholder="address" required />
 
                   <div className='row'>
@@ -262,11 +266,11 @@ const Userprofile = (props) => {
 
                     </div>
                     <div className='col-sm-3'>
-                      <label htmlFor="phonenumber1" className="form-label ms-3">Phone Number 1:</label>
+                      <label htmlFor="phonenumber1" className="form-label ms-3"><i class="bi bi-star-fill"></i>Mob Number 1:</label>
                       <input type="text" id="phonenumber1" className="form-control mb-3 rounded-pill" placeholder="Phone Number1" required />
                     </div>
                     <div className='col-sm-3'>
-                      <label htmlFor="phonenumber2" className="form-label ms-3">Phone Number 2:</label>
+                      <label htmlFor="phonenumber2" className="form-label ms-3">Mob Number 2:</label>
                       <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2" required />
                     </div>
                   </div>
