@@ -121,10 +121,10 @@ const Signin = (props) => {
 
             <div className="separator">
               <p className="change_link">or
-                <a href="https://new-sage-nine.vercel.app/getloginotp"> <u>Login with OTP</u> </a>
+                <a href="https://www.quickcatalog.in/getloginotp"> <u>Login with OTP</u> </a>
               </p>
               <p className="change_link">New to site?
-                <a href="https://new-sage-nine.vercel.app/signup"> <u>Sign Up</u> </a>
+                <a href="https://www.quickcatalog.in/signup"> <u>Sign Up</u> </a>
               </p>
 
               <div className="clearfix"></div>

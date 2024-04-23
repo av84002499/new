@@ -170,7 +170,7 @@ const Userprofile = (props) => {
       <div className="modal-body text-center">
         <div ref={qrCodeRef}>
           <QRCode
-            value={`https://new-sage-nine.vercel.app/Menu/${encodeURIComponent(props.userLogged().userID)}`}
+            value={`https://www.quickcatalog.in/Menu/${encodeURIComponent(props.userLogged().userID)}`}
             size={250}
           />
           <div

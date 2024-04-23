@@ -154,7 +154,7 @@ const Signup = () => {
 
                     <div className="row">
                       <div className="col-md-6">
-                        <a href="https://new-sage-nine.vercel.app/getloginotp">
+                        <a href="hhttps://www.quickcatalog.in/getloginotp">
                           {' '}
                           <i className="fa fa-user"> Sign In </i>{' '}
                         </a>
