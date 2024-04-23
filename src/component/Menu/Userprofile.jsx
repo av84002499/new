@@ -210,7 +210,7 @@ const Userprofile = (props) => {
         <section className="login_content">
           <div className="tm-hero-text-container">
             <div className='row'>
-              <div className='col-md-4 p-2'>
+              <div className='col-md-2 p-2'>
                 <div className='overflow-hidden rounded position-relative border' style={{ maxHeight: '63vh' }}>
                   <img id='profimg' src='./images/t-client-img-1.jpg' width='100%' alt='userimg' />
                   <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-3 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i className="bi bi-pencil-square p-1"></i></button>
