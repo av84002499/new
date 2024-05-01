@@ -26,7 +26,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/users/signup', {
+      const response = await fetch('http://localhost:3200/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const Signup = () => {
         icon: 'success',
         title: 'Signed up successfully!',
         showConfirmButton: false,
-        timer: 3000, // 3 seconds
+        timer: 1000, // 1 seconds
       });
       navigate('/getloginotp');
 

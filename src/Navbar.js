@@ -17,11 +17,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark py-0 sticky-nav fade-in-top">
         <div className="container-fluid mainbar">
           <Link className="navbar-brand js-scroll-trigger" to="/">
-            <img
-              className="nav-logo-white"
-              src="./images/logo-white.png"
-              alt="logo img"
-            />
+          
             <img
               className="nav-logo-black"
               src="./images/logo-black.png"
