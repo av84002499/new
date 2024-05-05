@@ -10,19 +10,37 @@ const Products = (props) => {
         price: '',
         sizes: '',
         imageUrl: '',
+        productId: '', // Added productId field for update form
     });
 
-    const { name, price, sizes, imageUrl } = formData;
+    const { name, price, sizes, imageUrl, productId } = formData;
+
+    const resetForm = () => {
+        setFormData({
+            ...formData,
+            name: '',
+            price: '',
+            sizes: '',
+            imageUrl: '',
+        });
+    };
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
-        await addProduct(event);
-        await updateProduct (event);
+        event.preventDefault();
+        if (event.target.id === 'addForm') {
+            await addProduct();
+        } else if (event.target.id === 'updateForm') {
+            await updateProduct(productId, {
+                name,
+                price,
+                sizes: sizes.split(',').map(size => size.trim()),
+                imageUrl,
+            });
+        }
     };
-   
 
     const handleChange = (e) => {
-        if (e.target.name === 'imageUrl') {
+        if (e.target.name === 'imageUrl' && e.target.files) {
             setFormData({
                 ...formData,
                 imageUrl: e.target.files[0],
@@ -34,9 +52,9 @@ const Products = (props) => {
             });
         }
     };
-
-    const addProduct = async (event) => {
-        event.preventDefault();
+    
+    
+    const addProduct = async () => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
             alert('Please Login again!');
@@ -52,7 +70,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('https://qmunuback.onrender.com/api/products/', {
+            const response = await fetch('http://localhost:3200/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -72,12 +90,7 @@ const Products = (props) => {
                 timer: 3000,
             });
             getProducts();
-            setFormData({
-                name: '',
-                price: '',
-                sizes: '',
-                imageUrl: '',
-            });
+            resetForm(); // Reset form fields after successful addition
         } catch (error) {
             console.error('Error saving details:', error.message);
         }
@@ -93,7 +106,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('https://qmunuback.onrender.com/api/products/myProducts', {
+            const response = await fetch('http://localhost:3200/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -142,7 +155,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://qmunuback.onrender.com/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -167,6 +180,17 @@ const Products = (props) => {
         }
     };
 
+    const editProduct = (productId, name, price, sizes, imageUrl) => {
+        setFormData({
+            ...formData,
+            productId: productId,
+            name: name,
+            price: price,
+            sizes: sizes.join(', '),
+            imageUrl: imageUrl,
+        });
+    };
+
     const updateProduct = async (prodId, updatedData) => {
         const userId = props.userLogged.userID;
         if (!userId) {
@@ -176,7 +200,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://qmunuback.onrender.com/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -214,18 +238,13 @@ const Products = (props) => {
                     </h3>
                 </div>
                 <div className="card-body row">
-                <form class="d-flex " role="search">
-        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-
-      <hr />
+                    <hr />
                     {products.map((product, index) => (
                         <div className='col-sm-6' key={index}>
                             <div className="card m-3 border-0">
                                 <div className="menu-item">
                                     <div className="menu-item-thumbnail">
-                                        <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                        <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
                                     </div>
                                     <div className="menu-item-description position-relative">
                                         <h5>{product.name}</h5>
@@ -236,7 +255,7 @@ const Products = (props) => {
                                     </div>
                                     <div className='position-absolute top-0 end-0 m-3'>
                                         <button type='button' className='btn btn-sm btn-danger rounded-pill float-end' onClick={() => confirmDelete(product.name, product._id)}><i className="bi bi-trash"></i></button>
-                                        <button className='btn btn-sm btn-danger rounded-pill float-end' data-bs-toggle="modal" data-bs-target='#UpdateProdModal' onClick={() => setFormData({ ...formData, name: product.name, price: product.price, sizes: product.sizes.join(', ') })}>Edit</button>
+                                        <button className='btn btn-sm btn-danger rounded-pill float-end' data-bs-toggle="modal" data-bs-target='#UpdateProdModal' onClick={() => editProduct(product._id, product.name, product.price, product.sizes, product.imageUrl)}>Edit</button>
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +273,7 @@ const Products = (props) => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
+                            <form id="addForm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <input type="text" className="form-control rounded-pill" placeholder="Name" name="name" value={name} onChange={handleChange} required />
                                 </div>
@@ -284,7 +303,7 @@ const Products = (props) => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
+                            <form id="updateForm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <input type="text" className="form-control rounded-pill" placeholder="Name" name="name" value={name} onChange={handleChange} required />
                                 </div>
@@ -294,10 +313,10 @@ const Products = (props) => {
                                 <div className="mb-3">
                                     <input type="text" className="form-control rounded-pill" placeholder="Sizes" name="sizes" value={sizes} onChange={handleChange} required />
                                 </div>
-                                <input type="file" name="imageUrl" onChange={handleChange} required />
+
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" className="btn btn-success rounded-pill">Save</button>
+                                    <button type="submit" className="btn btn-success rounded-pill">Update</button>
                                 </div>
                             </form>
                         </div>
