@@ -29,7 +29,7 @@ const Signin = (props) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      const response = await fetch('https://qmunuback.onrender.com/api/users/signin', {
+      const response = await fetch('http://localhost:3200/api/users/signin', {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(formData)
@@ -37,16 +37,15 @@ const Signin = (props) => {
 
       if (!response.ok) {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Invalid credentials!',
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid credentials!',
         });
-        throw new Error('Invalid credentials');
-    } else if (response.status === 409) { // Assuming 409 represents a conflict (email already exists)
+      } else if (response.status === 409) { // Assuming 409 represents a conflict (email already exists)
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'The email already exists!',
+          icon: 'error',
+          title: 'Oops...',
+          text: 'The email already exists!',
         });
     }
       

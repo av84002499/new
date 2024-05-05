@@ -40,7 +40,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/getuserdata', {
+      const response = await fetch('http://localhost:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,8 +78,11 @@ const Userprofile = (props) => {
     document.getElementById('phonenumber2').value = shopdtl.phonenumber2;
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
-    document.getElementById('profimg').src = 'https://qmunuback.onrender.com/uploads/' + shopdtl.imageUrl;
-
+    var img = document.getElementById('profimg');
+    img.src = 'http://localhost:3200/uploads/' + shopdtl.imageUrl;
+    img.height = 450; 
+    img.width = 400; 
+    
   }
 
   const saveShopdtls = async (event) => {
@@ -103,7 +106,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/userdata/', {
+      const response = await fetch('http://localhost:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -267,7 +270,7 @@ const Userprofile = (props) => {
                           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                          <form id='shopImgForm' action="https://qmunuback.onrender.com/api/upload/shopimg" method="post" encType="multipart/form-data" >
+                          <form id='shopImgForm' action="http://localhost:3200/api/upload/shopimg" method="post" encType="multipart/form-data" >
                             <input className="form-control mb-3 rounded-pill d-none" type="text" id="userId" name="userId" defaultValue={props.userLogged().userID} />
                             <input className="form-control mb-3 rounded-pill" type="file" id="shopimg" name="imageUrl" accept="image/*" required />
 
