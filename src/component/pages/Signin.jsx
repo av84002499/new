@@ -29,7 +29,7 @@ const Signin = (props) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      const response = await fetch('https://qmunuback.onrender.com/api/users/signin', {
+      const response = await fetch('https://quickcatalog.online/api/users/signin', {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(formData)
