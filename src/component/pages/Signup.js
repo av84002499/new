@@ -40,7 +40,7 @@ const Signup = () => {
     }
     setLoading(true); // Set loading state to true when submitting form
     try {
-      const response = await fetch('http://localhost:3200/api/users/signup', {
+      const response = await fetch('https://qmunuback.onrender.com/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
