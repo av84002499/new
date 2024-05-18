@@ -5,6 +5,27 @@ import Swal from 'sweetalert2';
 const Products = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    
+  const [loading, setLoading] = useState(true); 
+  const [count, setCount] = useState(2); 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCount(prevCount => prevCount - 1);
+    }, 2000);
+
+    // Stop the loading and countdown when count reaches 1
+    if (count === 2) {
+      setLoading(false);
+      clearTimeout(timer);
+    }
+
+    return () => clearTimeout(timer);
+  }, [count]);
+  const handleClick = () => {
+    setLoading(true);
+    setCount(5); // or any desired countdown value
+  };
+
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -70,7 +91,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('https://qmunuback.onrender.com/api/products/', {
+            const response = await fetch('https://quickcatalog.online/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -83,6 +104,7 @@ const Products = (props) => {
             }
             const responseData = await response.json();
             console.log(responseData);
+            setLoading(false);
             Swal.fire({
                 icon: 'success',
                 title: name + ' added successfully!',
@@ -106,7 +128,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('https://qmunuback.onrender.com/api/products/myProducts', {
+            const response = await fetch('https://quickcatalog.online/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,7 +177,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://qmunuback.onrender.com/api/products/' + prodId;
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -200,7 +222,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://qmunuback.onrender.com/api/products/' + prodId;
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -244,7 +266,7 @@ const Products = (props) => {
                             <div className="card m-3 border-0">
                                 <div className="menu-item">
                                     <div className="menu-item-thumbnail">
-                                        <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
                                     </div>
                                     <div className="menu-item-description position-relative">
                                         <h5>{product.name}</h5>
@@ -286,8 +308,13 @@ const Products = (props) => {
                                 <input type="file" name="imageUrl" onChange={handleChange} required />
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" className="btn btn-success rounded-pill">Save</button>
-                                </div>
+                                    <button type="submit" className="btn btn-success rounded-pill" onClick={handleClick}>
+                                    {loading ? (
+                                      <p>Please wait {count} sec...</p>
+                                    ) : (
+                                      <p>Save</p>
+                                    )}
+                                  </button>                                </div>
                             </form>
                         </div>
                     </div>

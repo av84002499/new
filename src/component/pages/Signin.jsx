@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -6,11 +6,26 @@ import Swal from 'sweetalert2';
 
 const Signin = (props) => {
   const navigate = useNavigate();
+  
+  const [loading, setLoading] = useState(true); 
+  const [count, setCount] = useState(2); 
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCount(prevCount => prevCount - 1);
+    }, 2000);
 
+    // Stop the loading and countdown when count reaches 1
+    if (count === 2) {
+      setLoading(false);
+      clearTimeout(timer);
+    }
+
+    return () => clearTimeout(timer);
+  }, [count]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,23 +44,29 @@ const Signin = (props) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      const response = await fetch('https://qmunuback.onrender.com/api/users/signin', {
+      const response = await fetch('https://quickcatalog.online/api/users/signin', {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
+        setLoading(false);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Invalid credentials!',
+          timer: 3000, // 1 second
+
         });
       } else if (response.status === 409) { // Assuming 409 represents a conflict (email already exists)
+        setLoading(false);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'The email already exists!',
+          timer: 3000, // 1 second
+
         });
     }
       
@@ -117,8 +138,11 @@ const Signin = (props) => {
                     </div>
                     <div className="col-md-4 mt-2">
                       <button type="submit" className="width-35 btn btn-success" onClick={handleSubmit}>
-                        <i className="ace-icon fa fa-key"></i>
-                        <span className="bigger-110">Login</span>
+                      {loading ? (
+                        <p>Please wait {count} sec...</p>
+                      ) : (
+                        <p>Continue</p>
+                      )} 
                       </button>
                     </div>
 

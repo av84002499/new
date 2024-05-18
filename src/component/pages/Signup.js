@@ -40,7 +40,7 @@ const Signup = () => {
     }
     setLoading(true); // Set loading state to true when submitting form
     try {
-      const response = await fetch('https://qmunuback.onrender.com/api/users/signup', {
+      const response = await fetch('https://quickcatalog.online/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

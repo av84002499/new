@@ -9,7 +9,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchMenuItem = async () => {
             try {
-                const response = await fetch(`https://qmunuback.onrender.com/api/menu/${id}`);
+                const response = await fetch(`https://quickcatalog.online/api/menu/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch menu item');
                 }
@@ -26,7 +26,7 @@ const Menu = () => {
     return (
         <>
         <div style={{
-            backgroundImage: `url('https://qmunuback.onrender.com/uploads/${shopdtl.imageUrl}')`,
+            backgroundImage: `url('https://quickcatalog.online/uploads/${shopdtl.imageUrl}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
         }}>
@@ -65,7 +65,7 @@ const Menu = () => {
                                     <div key={index} className="menu-style col-md-6">
                                         <div className="menu-item align-items-center d-flex">
                                         <div className="menu-item-thumbnail">
-                                        <img src={'https://qmunuback.onrender.com/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
                                     </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
