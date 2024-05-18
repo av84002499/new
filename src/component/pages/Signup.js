@@ -171,7 +171,7 @@ const Signup = () => {
 
                     <div className="row">
                       <div className="col-md-6">
-                        <a href="https://www.quickcatalog.in/getloginotp"> <u>Signin</u> </a>
+                        <a href="https://quickcatalog.in/getloginotp"> <u>Signin</u> </a>
                       </div>
                     </div>
                   </div>

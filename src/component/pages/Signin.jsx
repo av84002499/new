@@ -156,10 +156,10 @@ const Signin = (props) => {
 
             <div className="separator">
               <p className="change_link">or
-                <a href="https://www.quickcatalog.in/getloginotp"> <u>Login with OTP</u> </a>
+                <a href="https://quickcatalog.in/getloginotp"> <u>Login with OTP</u> </a>
               </p>
               <p className="change_link">New to site?
-                <a href="https://www.quickcatalog.in/signup"> <u>Sign Up</u> </a>
+                <a href="https://quickcatalog.in/signup"> <u>Sign Up</u> </a>
               </p>
 
               <div className="clearfix"></div>
