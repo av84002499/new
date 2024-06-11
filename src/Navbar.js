@@ -1,68 +1,47 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
+  // Example functions for opening and closing the navigation
+  const openNav = () => {
+    document.getElementById("mySidenav").style.width = "250px";
   };
 
   const closeNav = () => {
-    setIsNavOpen(false);
+    document.getElementById("mySidenav").style.width = "0";
   };
 
   return (
-    <div class="topnav" id="myTopnav">
-      <nav className="navbar navbar-expand-lg navbar-dark py-0 sticky-nav fade-in-top">
-        <div className="container-fluid mainbar">
-          <Link className="navbar-brand js-scroll-trigger" to="/">
-          
-            <img
-              className="nav-logo-black"
-              src="./images/logo-black.png"
-              alt="logo img"
-            />
-          </Link>
-          <button
-            className="navbar-toggler navbar-toggler-right"
-            type="button"
-            onClick={toggleNav}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className={`collapse navbar-collapse ${isNavOpen ? "show" : ""}`}
-            onClick={closeNav}
-          >
-            <ul className="navbar-nav ms-auto my-0 my-md-2 my-lg-0">
-              <li className="d-md-none d-lg-none">
-                <button className="closebtn">x</button>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/home">
-                  Home
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/getloginotp">
-                  Sign In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  SignUp
-                </Link>
-              </li>
-             
-            </ul>
-          </div>
+    <nav className="navbar navbar-expand-lg navbar-dark py-0">
+      <div className="container-fluid mainbar">
+        <a className="navbar-brand js-scroll-trigger" href="Home">
+          <img className="nav-logo-white img-fluid" src="../images/logo-white.png" alt="logo img" />
+          <img className="nav-logo-black img-fluid" src="../images/logo-black.png" alt="logo img" />
+        </a>
+        <button className="navbar-toggler navbar-toggler-right" type="button" onClick={openNav} aria-controls="mySidenav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse sidenav" id="mySidenav">
+          <ul className="navbar-nav ms-auto my-0 my-md-2 my-lg-0">
+            <li className="d-md-none d-lg-none">
+              <a href="Home" className="closebtn" onClick={closeNav}>&times;</a>
+            </li>
+            <li className="nav-item">
+             <Link className="nav-link js-scroll-trigger" to="/home">Home</Link>
+            </li>
+            
+            <li className="nav-item">
+              <Link className="nav-link js-scroll-trigger" to="/Signin">Sign in</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link js-scroll-trigger" to="/Signup">Sign up</Link>
+            </li>
+            
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
-};
+}
 
 export default Navbar;
