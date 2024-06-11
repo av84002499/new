@@ -35,8 +35,8 @@ const Footer = () => {
                   <div className="box-content">
                     <ul className="user-links">
                       <li><a href="Home">Home</a></li>
-                      <li><a href="SignIn">Sign In</a></li>
-                      <li><a href="SignUp">Sign Up</a></li>
+                      <li><a href="https://quickcatalog.in/SignIn">Sign In</a></li>
+                      <li><a href="https://quickcatalog.in/SignUp">Sign Up</a></li>
                     </ul>
                   </div>
                 </div>
