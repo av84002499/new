@@ -6,7 +6,7 @@ const Home = () => {
             <div>
                 <a className="hiring-tag" href="!">
                     <figure className="swing-hiring-tag">
-                        <img alt="colorwhsitle" className="slowload" src="../images/hiring-tag.png" loading="slow" />
+                        {/* <img alt="colorwhsitle" className="slowload" src="" loading="slow" /> */}
                     </figure>
                 </a>
                 <header id="mainslider" className="masthead">

@@ -1,189 +1,119 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-
-
 const Signin = (props) => {
   const navigate = useNavigate();
-  
-  const [loading, setLoading] = useState(true); 
-  const [count, setCount] = useState(2); 
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCount(prevCount => prevCount - 1);
-    }, 2000);
-
-    // Stop the loading and countdown when count reaches 1
-    if (count === 2) {
-      setLoading(false);
-      clearTimeout(timer);
-    }
-
-    return () => clearTimeout(timer);
-  }, [count]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
     if (!email || !password) {
-      alert('Please fill in all fields');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Please fill in all fields',
+      });
       return;
     }
 
-    const formData = { 'email': email, 'password': password };
-    // console.log('formdata:', formData)
+    const formData = { email, password };
 
     try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      const response = await fetch('https://quickcatalog.online/api/users/signin', {
+      setLoading(true);
+      const response = await fetch('http://localhost:3200/api/users/signin', {
         method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        setLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Invalid credentials!',
-          timer: 3000, // 1 second
-
-        });
-      } else if (response.status === 409) { // Assuming 409 represents a conflict (email already exists)
-        setLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'The email already exists!',
-          timer: 3000, // 1 second
-
-        });
-    }
-      
+        throw new Error('Invalid credentials');
+      }
 
       const responseData = await response.json();
-      if (responseData) {
-        // console.log(responseData);
-        props.setUserLogged(responseData);
-        Swal.fire({
-          icon: 'success',
-          title: 'Logged in successfully!',
-          showConfirmButton: false,
-          timer: 1000, //  seconds
-        });
-        navigate('/Userprofile');
-      }
-      else {
-        console.log('Something went wrong:', responseData);
-        navigate('/Signin');
-      }
-
-
+      props.setUserLogged(responseData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Logged in successfully!',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      navigate('/Userprofile');
     } catch (error) {
       console.error('Error submitting form:', error.message);
-      alert(error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message,
+      });
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
-    <div className="card" style={{ maxWidth: '400px', margin: 'auto', marginTop: 7 + 'rem', marginBottom: 3 + 'rem' }}>
+    <div className="card" style={{ maxWidth: '400px', margin: 'auto', marginTop: '7rem', marginBottom: '3rem' }}>
       <div className="card-body">
         <div className="animate form login_form" style={{ background: 'azure', padding: '10px' }}>
           <section className="login_content">
-            <form id="login">
+            <form onSubmit={handleSubmit}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                 <img style={{ height: '200px' }} src="./images/hiring-tag.png" alt="Description" />
               </div>
               <h1 style={{ textAlign: 'center' }}>Login Form</h1>
               <div>
-                <input type="text" id="email" className="form-control mb-3" placeholder="Email" required />
+                <input
+                  type="email"
+                  className="form-control mb-3"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </div>
               <div>
-                <div style={{ position: 'relative' }}>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    className="form-control mb-3"
-                    placeholder="Password"
-                    required
-                  />
-                  <i
-                    className={showPassword ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'}
-                    onClick={togglePasswordVisibility}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      right: '10px',
-                      transform: 'translateY(-50%)',
-                      cursor: 'pointer'
-                    }}
-                  ></i>
-                </div>
+                <input
+                  type="password"
+                  className="form-control mb-3"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </div>
-
-
-                <div>
-                  <div className="row mt-2">
-                    <div className="col-md-8 m-auto text-end">
-                      <a className="reset_pass" href="/getresetpasswordotp">Lost your password?</a>
-                    </div>
-                    <div className="col-md-4 mt-2">
-                      <button type="submit" className="width-35 btn btn-success" onClick={handleSubmit}>
-                      {loading ? (
-                        <p>Please wait {count} sec...</p>
-                      ) : (
-                        <p>Continue</p>
-                      )} 
-                      </button>
-                    </div>
-
+              <div>
+                <div className="row mt-2">
+                  <div className="col-md-8 m-auto text-end">
+                    <a className="reset_pass" href="/getresetpasswordotp">Lost your password?</a>
+                  </div>
+                  <div className="col-md-4 mt-2">
+                    <button type="submit" className="width-35 btn btn-success" disabled={loading}>
+                      <i className="ace-icon fa fa-key"></i>
+                      <span className="bigger-110">Login</span>
+                    </button>
                   </div>
                 </div>
-
+              </div>
             </form>
-
-            <div className="clearfix">
-            </div>
-
             <div className="separator">
               <p className="change_link">or
-                <a href="https://quickcatalog.in/getloginotp"> <u>Login with OTP</u> </a>
+                <a href="http://localhost:3000/getloginotp"> <u>Login with OTP</u> </a>
               </p>
               <p className="change_link">New to site?
-                <a href="https://quickcatalog.in/signup"> <u>Sign Up</u> </a>
+                <a href="https://indiaemenu.com/sign-up"> <u>Sign Up</u> </a>
               </p>
-
-              <div className="clearfix"></div>
-              <br />
-
-              <div>
-                <div className="row">
-                  <div className="col-md-12 text-center">
-                    <h1><i className="fa fa-paw"></i> EMENU!</h1>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12 text-center">
-                      <p>©2024 All Rights Reserved. EMENU!</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
             </div>
           </section>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Signin
+export default Signin;

@@ -34,13 +34,13 @@ const Userprofile = (props) => {
     const userId = props.userLogged().userID;
     if (!userId) {
       alert('Please Login again!');
-      navigate('/getloginotp');
+      navigate('/Signin');
       return;
     }
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://quickcatalog.online/api/userdata/getuserdata', {
+      const response = await fetch('http://localhost:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const Userprofile = (props) => {
 
       if (!response.ok) {
         alert('Failed to load!!');
-        navigate('/getloginotp');
+        navigate('/Signin');
         return;
       }
       try {
@@ -79,10 +79,10 @@ const Userprofile = (props) => {
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     var img = document.getElementById('profimg');
-    img.src = 'https://quickcatalog.online/uploads/' + shopdtl.imageUrl;
-    img.height = 450; 
-    img.width = 400; 
-    
+    img.src = 'http://localhost:3200/uploads/' + shopdtl.imageUrl;
+    img.height = 450;
+    img.width = 400;
+
   }
 
   const saveShopdtls = async (event) => {
@@ -90,7 +90,7 @@ const Userprofile = (props) => {
     const userId = props.userLogged().userID;
     if (!userId) {
       alert('Please Login again!');
-      navigate('/getloginotp');
+      navigate('/Signin');
       return;
     }
     // const form = document.getElementById('shopdtl');
@@ -106,7 +106,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('https://quickcatalog.online/api/userdata/', {
+      const response = await fetch('http://localhost:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,6 +138,51 @@ const Userprofile = (props) => {
       alert(error.message);
     }
   };
+
+  const saveimageurl = async (event) => {
+    event.preventDefault();
+    const userId = props.userLogged().userID;
+    if (!userId) {
+      alert('Please Login again!');
+      navigate('/Signin');
+      return;
+    }
+    try {
+      const formDataToSend = new FormData(event.target);
+      formDataToSend.append('userId', userId);
+
+      const response = await fetch('http://localhost:3200/api/imagurl/shopimg', {
+        method: 'POST',
+        headers: {
+          "Authorization": props.userLogged().token,
+        },
+        body: formDataToSend,
+      });
+      if (!response.ok) {
+        console.log('Failed to Save!!');
+        return;
+      }
+      try {
+        const responseData = await response.json();
+        console.log(responseData);
+        Swal.fire({
+          icon: 'success',
+          title: 'Details updated successfully!',
+          showConfirmButton: false,
+          timer: 3000, // 3 seconds
+        });
+        getShopdtls();
+      } catch {
+        console.log('Something went wrong!!');
+      }
+    } catch (error) {
+      console.error('Error saving details:', error.message);
+      alert(error.message);
+    }
+  };
+
+
+
 
   const logoutUser = async () => {
     props.logoutUser();
@@ -200,7 +245,8 @@ const Userprofile = (props) => {
         <div className="card-header text-center text-white" style={{ backgroundColor: '#2a5c99' }}>
           <h2 className="tm-hero-title mb-0 position-relative">
             Profile
-            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"></i></button>
+            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"> OPEN QR CODE</i></button>
+
           </h2>
 
         </div>
@@ -237,7 +283,7 @@ const Userprofile = (props) => {
                       alignItems: 'center'
                     }}
                   >
-                    <img src="qc.png" alt="QC Logo" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
+                    <img src="./images/qc.png" alt="QC Logo" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
                   </div>
                 </div>
                 <h1>{props.userLogged().name}</h1>
@@ -258,9 +304,10 @@ const Userprofile = (props) => {
               <div className='row'>
                 <div className='col-md-4 p-2'>
                   <div className='overflow-hidden rounded position-relative border' style={{ maxHeight: '63vh' }}>
-                    <img id='profimg' src='./images/demo.jpg' width='100%' alt='userimg' />
+                    <img id='profimg' src='./images/profile-image.jpg' width='100%' alt='userimg' />
                     <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-3 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i className="bi bi-pencil-square p-1"></i></button>
                   </div>
+
 
                   <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -270,10 +317,9 @@ const Userprofile = (props) => {
                           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                          <form id='shopImgForm' action="https://quickcatalog.online/api/upload/shopimg" method="post" encType="multipart/form-data" >
+                          <form id='shopImgForm' onSubmit={saveimageurl} encType="multipart/form-data">
                             <input className="form-control mb-3 rounded-pill d-none" type="text" id="userId" name="userId" defaultValue={props.userLogged().userID} />
                             <input className="form-control mb-3 rounded-pill" type="file" id="shopimg" name="imageUrl" accept="image/*" required />
-
                             <button className="btn btn-success rounded-pill float-end ms-3" type='submit'>Save</button>
                             <button type="button" className="btn btn-secondary float-end rounded-pill" data-bs-dismiss="modal">Cancel</button>
                           </form>
@@ -281,6 +327,7 @@ const Userprofile = (props) => {
                       </div>
                     </div>
                   </div>
+
                 </div>
 
                 <div className='col-md-8 p-3'>
@@ -307,7 +354,7 @@ const Userprofile = (props) => {
                       <div className='col-sm-6'>
 
                         <label htmlFor="fcinumber" className="form-label ms-3">Registration number:</label>
-                        <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="Registration number"  />
+                        <input type="text" id="fcinumber" className="form-control mb-3 rounded-pill" placeholder="Registration number" />
 
                       </div>
                       <div className='col-sm-3'>
@@ -316,17 +363,17 @@ const Userprofile = (props) => {
                       </div>
                       <div className='col-sm-3'>
                         <label htmlFor="phonenumber2" className="form-label ms-3">Mob Number 2:</label>
-                        <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2"  />
+                        <input type="text" id="phonenumber2" className="form-control mb-3 rounded-pill" placeholder="Phone Number2" />
                       </div>
                     </div>
                     <div className='row mb-3'>
                       <div className='col-sm-6'>
                         <label htmlFor="gstnumber" className="form-label ms-3">GST Number:</label>
-                        <input type="text" id="gstnumber" className="form-control mb-3 rounded-pill" placeholder="GST Number"  />
+                        <input type="text" id="gstnumber" className="form-control mb-3 rounded-pill" placeholder="GST Number" />
                       </div>
                       <div className='col-sm-6'>
                         <label htmlFor="aadharnumber" className="form-label ms-3">Aadhar Number:</label>
-                        <input type="text" id="aadharnumber" className="form-control mb-3 rounded-pill" placeholder="Aadhar Number"  />
+                        <input type="text" id="aadharnumber" className="form-control mb-3 rounded-pill" placeholder="Aadhar Number" />
                       </div>
 
                     </div>

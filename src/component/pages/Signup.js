@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,68 +11,57 @@ const Signup = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(true); 
-  const [count, setCount] = useState(2); 
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCount(prevCount => prevCount - 1);
-    }, 2000);
-
-    // Stop the loading and countdown when count reaches 1
-    if (count === 2) {
-      setLoading(false);
-      clearTimeout(timer);
-    }
-
-    return () => clearTimeout(timer);
-  }, [count]);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (!isChecked) {
       setErrorMessage('Please agree to the Terms of Services and Privacy Policy.');
       return;
     }
-    setLoading(true); // Set loading state to true when submitting form
+
+    setLoading(true);
+
     try {
-      const response = await fetch('https://quickcatalog.online/api/users/signup', {
+      // Wait for 4 seconds before proceeding with the submission
+      await delay(4000);
+
+      const response = await fetch('http://localhost:3200/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email,
-          password,
-          name,
-        }),
+        body: JSON.stringify({ email, password, name }),
       });
+
       if (!response.ok) {
         const data = await response.json();
         throw new Error(data.message || 'Sign up failed.');
       }
-      // Handle successful signup
-      setLoading(false); // Set loading state to false after successful signup
+
       Swal.fire({
         icon: 'success',
         title: 'Signed up successfully!',
         showConfirmButton: false,
-        timer: 1000, // 1 second
+        timer: 1000,
       });
       navigate('/getloginotp');
-
     } catch (error) {
-      console.error('Email already exists:', error.message);
-      setLoading(false); // Set loading state to false if signup fails
+      console.error('Signup failed:', error.message);
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'The email already exists!',
+        text: error.message,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -82,7 +71,7 @@ const Signup = () => {
         <div className="row login-box">
           <div className="col-md-12">
             <div className="login-img">
-              <img className="img-fluid" src="signup_img.png" alt="" />
+              <img className="img-fluid" src="./images/signup_img.png" alt="" />
             </div>
           </div>
           <div className="col-md-12">
@@ -98,24 +87,20 @@ const Signup = () => {
                           type="email"
                           className="form-control"
                           id="reg-email"
-                          name="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
                         />
                       </div>
                     </div>
-
                     <div className="col-md-12">
                       <div className="form-group mb-3">
                         <label htmlFor="desirePassword">Set Password</label>
                         <div className="showpassword">
                           <input
                             type={showPassword ? 'text' : 'password'}
-                            name="password"
                             className="form-control"
                             id="desirePassword"
-                            placeholder="Desired Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -126,12 +111,11 @@ const Signup = () => {
                     </div>
                     <div className="col-md-12">
                       <div className="form-group mb-3">
-                        <label htmlFor="looking_for_home">Full Name</label>
+                        <label htmlFor="fullName">Full Name</label>
                         <input
                           type="text"
                           className="form-control"
-                          id="looking_for_home"
-                          name="looking_for"
+                          id="fullName"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           required
@@ -156,24 +140,15 @@ const Signup = () => {
 
                     <div className="col-md-12 pt-md-2 pt-1">
                       <button className="btn btn-primary comn-btn" type="submit" disabled={loading}>
-                      {loading ? (
-                        <p>Please wait {count} sec...</p>
-                      ) : (
-                        <p>Continue</p>
-                      )}  
+                        {loading ? <p>Please wait...</p> : <p>Continue</p>}
                       </button>
                     </div>
+
                     {errorMessage && (
                       <p className="mt-2 mb-3 text-center" style={{ fontSize: '12px', background: '#981A0C', color: 'white', padding: '5px' }}>
                         {errorMessage}
                       </p>
                     )}
-
-                    <div className="row">
-                      <div className="col-md-6">
-                        <a href="https://quickcatalog.in/getloginotp"> <u>Signin</u> </a>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </form>

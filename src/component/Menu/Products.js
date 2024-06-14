@@ -5,26 +5,26 @@ import Swal from 'sweetalert2';
 const Products = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    
-  const [loading, setLoading] = useState(true); 
-  const [count, setCount] = useState(2); 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCount(prevCount => prevCount - 1);
-    }, 2000);
 
-    // Stop the loading and countdown when count reaches 1
-    if (count === 2) {
-      setLoading(false);
-      clearTimeout(timer);
-    }
+    const [loading, setLoading] = useState(true);
+    const [count, setCount] = useState(2);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCount(prevCount => prevCount - 1);
+        }, 2000);
 
-    return () => clearTimeout(timer);
-  }, [count]);
-  const handleClick = () => {
-    setLoading(true);
-    setCount(5); // or any desired countdown value
-  };
+        // Stop the loading and countdown when count reaches 1
+        if (count === 2) {
+            setLoading(false);
+            clearTimeout(timer);
+        }
+
+        return () => clearTimeout(timer);
+    }, [count]);
+    const handleClick = () => {
+        setLoading(true);
+        setCount(5); // or any desired countdown value
+    };
 
     const [formData, setFormData] = useState({
         name: '',
@@ -73,8 +73,8 @@ const Products = (props) => {
             });
         }
     };
-    
-    
+
+
     const addProduct = async () => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
@@ -91,7 +91,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('https://quickcatalog.online/api/products/', {
+            const response = await fetch('http://localhost:3200/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -128,7 +128,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('https://quickcatalog.online/api/products/myProducts', {
+            const response = await fetch('http://localhost:3200/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://quickcatalog.online/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -222,7 +222,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://quickcatalog.online/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -250,6 +250,50 @@ const Products = (props) => {
         }
     };
 
+    // const saveimageurl = async (prodId) => {
+    //     const userId = props.userLogged.userID;
+    //     if (!userId) {
+    //         alert('Please Login again!');
+    //         navigate('/getloginotp');
+    //         return;
+    //     }
+    //     try {
+    //         const formDataToSend = new FormData(prodId.target);
+    //         formDataToSend.append('prodId', userId);
+
+    //         const response = await fetch('http://localhost:3200/api/imagurl/prodimg', {
+    //             method: 'POST',
+    //            headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: props.userLogged.token,
+    //             },
+    //             body: formDataToSend,
+    //         });
+    //         if (!response.ok) {
+    //             console.log('Failed to Save!!');
+    //             return;
+    //         }
+    //         try {
+    //             const responseData = await response.json();
+    //             console.log(responseData);
+    //             Swal.fire({
+    //                 icon: 'success',
+    //                 title: 'Details updated successfully!',
+    //                 showConfirmButton: false,
+    //                 timer: 3000, // 3 seconds
+    //             });
+    //             getProducts();
+    //         } catch {
+    //             console.log('Something went wrong!!');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error saving details:', error.message);
+    //         alert(error.message);
+    //     }
+    // };
+
+
+
     return (
         <>
             <div className="card">
@@ -265,9 +309,34 @@ const Products = (props) => {
                         <div className='col-sm-6' key={index}>
                             <div className="card m-3 border-0">
                                 <div className="menu-item">
-                                    <div className="menu-item-thumbnail">
-                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                    <div className="menu-item-thumbnail ">
+                                        <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="img-fluid rounded w-100 h-100" alt="Product" />
+
+
+                                        {/* <img src='./images/profile-image.jpg' className="img-fluid rounded-circle" style={{ width: '50px', height: '50px' }} alt='Product Profile' />
+                                        <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-3 p-1" data-bs-toggle="modal" data-bs-target="#prodectModal">
+                                            <i className="bi bi-pencil-square"></i>
+                                        </button>
+                                        <div className="modal fade" id="prodectModal" tabIndex="-1" aria-labelledby="prodectModalLabel" aria-hidden="true">
+                                            <div className="modal-dialog">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h5 className="modal-title" id="prodectModalLabel">Change Profile Picture</h5>
+                                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div className="modal-body">
+                                                        <form id='ProdectImgForm' onSubmit={saveimageurl} encType="multipart/form-data">
+                                                            <input className="form-control mb-3 rounded-pill d-none" type="text" id="userId" name="userId" />
+                                                            <input className="form-control mb-3 rounded-pill" type="file" id="prodId" name="imageUrl" accept="image/*" required />
+                                                            <button className="btn btn-success rounded-pill float-end ms-3" type='submit'>Save</button>
+                                                            <button type="button" className="btn btn-secondary float-end rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> */}
                                     </div>
+
                                     <div className="menu-item-description position-relative">
                                         <h5>{product.name}</h5>
                                         <p>Size: {product.sizes.map((size, idx) => <span key={idx}>{size}</span>)}</p>
@@ -309,12 +378,12 @@ const Products = (props) => {
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
                                     <button type="submit" className="btn btn-success rounded-pill" onClick={handleClick}>
-                                    {loading ? (
-                                      <p>Please wait {count} sec...</p>
-                                    ) : (
-                                      <p>Save</p>
-                                    )}
-                                  </button>                                </div>
+                                        {loading ? (
+                                            <p>Please wait {count} sec...</p>
+                                        ) : (
+                                            <p>Save</p>
+                                        )}
+                                    </button>                                </div>
                             </form>
                         </div>
                     </div>
@@ -340,6 +409,7 @@ const Products = (props) => {
                                 <div className="mb-3">
                                     <input type="text" className="form-control rounded-pill" placeholder="Sizes" name="sizes" value={sizes} onChange={handleChange} required />
                                 </div>
+                                {/* <input type="file" name="imageUrl" onChange={handleChange} required /> */}
 
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>

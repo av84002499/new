@@ -10,7 +10,7 @@ const GetResetPasswordOTP = (props) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://quickcatalog.online/api/users/sendotp', {
+            const response = await fetch('http://localhost:3200/api/users/sendotp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
