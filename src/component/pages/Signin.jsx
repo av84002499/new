@@ -24,7 +24,7 @@ const Signin = (props) => {
 
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3200/api/users/signin', {
+      const response = await fetch('https://quickcatalog.online/api/users/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

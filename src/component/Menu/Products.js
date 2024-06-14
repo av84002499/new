@@ -91,7 +91,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('http://localhost:3200/api/products/', {
+            const response = await fetch('https://quickcatalog.online/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -128,7 +128,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('http://localhost:3200/api/products/myProducts', {
+            const response = await fetch('https://quickcatalog.online/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'http://localhost:3200/api/products/' + prodId;
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -222,7 +222,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'http://localhost:3200/api/products/' + prodId;
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -261,7 +261,7 @@ const Products = (props) => {
     //         const formDataToSend = new FormData(prodId.target);
     //         formDataToSend.append('prodId', userId);
 
-    //         const response = await fetch('http://localhost:3200/api/imagurl/prodimg', {
+    //         const response = await fetch('https://quickcatalog.online/api/imagurl/prodimg', {
     //             method: 'POST',
     //            headers: {
     //                 'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ const Products = (props) => {
                             <div className="card m-3 border-0">
                                 <div className="menu-item">
                                     <div className="menu-item-thumbnail ">
-                                        <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="img-fluid rounded w-100 h-100" alt="Product" />
+                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded w-100 h-100" alt="Product" />
 
 
                                         {/* <img src='./images/profile-image.jpg' className="img-fluid rounded-circle" style={{ width: '50px', height: '50px' }} alt='Product Profile' />

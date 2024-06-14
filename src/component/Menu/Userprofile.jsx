@@ -40,7 +40,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('http://localhost:3200/api/userdata/getuserdata', {
+      const response = await fetch('https://quickcatalog.online/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const Userprofile = (props) => {
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     var img = document.getElementById('profimg');
-    img.src = 'http://localhost:3200/uploads/' + shopdtl.imageUrl;
+    img.src = 'https://quickcatalog.online/uploads/' + shopdtl.imageUrl;
     img.height = 450;
     img.width = 400;
 
@@ -106,7 +106,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('http://localhost:3200/api/userdata/', {
+      const response = await fetch('https://quickcatalog.online/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const Userprofile = (props) => {
       const formDataToSend = new FormData(event.target);
       formDataToSend.append('userId', userId);
 
-      const response = await fetch('http://localhost:3200/api/imagurl/shopimg', {
+      const response = await fetch('https://quickcatalog.online/api/imagurl/shopimg', {
         method: 'POST',
         headers: {
           "Authorization": props.userLogged().token,

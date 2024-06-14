@@ -33,7 +33,7 @@ const Signup = () => {
       // Wait for 4 seconds before proceeding with the submission
       await delay(4000);
 
-      const response = await fetch('http://localhost:3200/api/users/signup', {
+      const response = await fetch('https://quickcatalog.online/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
