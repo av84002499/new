@@ -8,7 +8,7 @@ import Userprofile from "./component/Menu/Userprofile";
 import Footer from "./Footer";
 import Cookies from "js-cookie";
 import Navbar from "./Navbar";
-import Signin from "./component/pages/Signin";
+import GetLoginOTP from "./component/pages/GetLoginOTP";
 import LoginWithOTP from "./component/pages/LoginWithOTP";
 import GetResetPasswordOTP from "./component/pages/GetResetPasswordOTP";
 import ResetPasswordWithOTP from "./component/pages/ResetPasswordWithOTP";
@@ -79,9 +79,9 @@ const App = () => {
           element={<Signin setUserLogged={setUserLogged} />}
         />
         <Route
-          key="Signin"
-          path="/Signin"
-          element={<Signin />}
+          key="getloginotp"
+          path="/getloginotp"
+          element={<GetLoginOTP />}
         />
         <Route
           key="loginwithotp"
