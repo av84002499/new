@@ -79,7 +79,7 @@ const Products = (props) => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
             alert('Please Login again!');
-            navigate('/getloginotp');
+            navigate('/Signin');
             return;
         }
 
@@ -122,7 +122,7 @@ const Products = (props) => {
         const ownerId = props.userLogged.userID;
         if (!ownerId) {
             alert('Please Login again!');
-            navigate('/getloginotp');
+            navigate('/Signin');
             return;
         }
 
@@ -139,7 +139,7 @@ const Products = (props) => {
 
             if (!response.ok) {
                 console.log('Failed to load products!!');
-                navigate('/getloginotp');
+                navigate('/Signin');
                 return;
             }
             const responseData = await response.json();
@@ -172,7 +172,7 @@ const Products = (props) => {
         const userId = props.userLogged.userID;
         if (!userId) {
             alert('Please Login again!');
-            navigate('/getloginotp');
+            navigate('/Signin');
             return;
         }
 
@@ -198,7 +198,7 @@ const Products = (props) => {
             getProducts();
         } catch (error) {
             console.error('Error deleting product:', error.message);
-            navigate('/getloginotp');
+            navigate('/Signin');
         }
     };
 
@@ -217,7 +217,7 @@ const Products = (props) => {
         const userId = props.userLogged.userID;
         if (!userId) {
             alert('Please Login again!');
-            navigate('/getloginotp');
+            navigate('/Signin');
             return;
         }
 
@@ -246,7 +246,7 @@ const Products = (props) => {
             getProducts();
         } catch (error) {
             console.error('Error updating product:', error.message);
-            navigate('/getloginotp');
+            navigate('/Signin');
         }
     };
 
@@ -254,7 +254,7 @@ const Products = (props) => {
     //     const userId = props.userLogged.userID;
     //     if (!userId) {
     //         alert('Please Login again!');
-    //         navigate('/getloginotp');
+    //         navigate('/Signin');
     //         return;
     //     }
     //     try {

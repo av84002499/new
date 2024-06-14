@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const GetLoginOTP = (props) => {
+const Signin = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
 
@@ -100,4 +100,4 @@ const GetLoginOTP = (props) => {
     );
 };
 
-export default GetLoginOTP;
+export default Signin;

@@ -52,7 +52,7 @@ const Signup = () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      navigate('/getloginotp');
+      navigate('/Signin');
     } catch (error) {
       console.error('Signup failed:', error.message);
       Swal.fire({
