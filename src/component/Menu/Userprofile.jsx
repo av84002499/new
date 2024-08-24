@@ -245,7 +245,7 @@ const Userprofile = (props) => {
         <div className="card-header text-center text-white" style={{ backgroundColor: '#2a5c99' }}>
           <h2 className="tm-hero-title mb-0 position-relative">
             Profile
-            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"> OPEN QR CODE</i></button>
+            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"> QR</i></button>
 
           </h2>
 
