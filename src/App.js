@@ -43,35 +43,37 @@ const App = () => {
 
   return (
     <div>
-      
+
       <Routes>
         <Route
           key="Home"
           path="/"
           element={
             <>
-             <Navbar />
-            <Home userLogged={getUserLogged} 
-          />
+              <Navbar />
+              <Home userLogged={getUserLogged}
+              />
             </>
           }
         />
+
         <Route key="Menu" path="/Menu/:id" element={
-        <>
-        <Navbar />
-        <Menu />
-        </>
+          <>
+            <Navbar />
+            <Menu />
+          </>
         } />
         <Route
           key="Home"
           path="/Home"
           element={
-          <>
-            <Navbar />
-            <Home userLogged={getUserLogged} />
+            <>
+              <Navbar />
+              <Home userLogged={getUserLogged} />
             </>
-        }
+          }
         />
+
         <Route key="Signup" path="/Signup" element={<Signup />} />
         <Route
           key="Signin"
@@ -108,6 +110,8 @@ const App = () => {
             />
           }
         />
+
+
       </Routes>
       <Footer />
     </div>

@@ -104,10 +104,10 @@ const Signin = (props) => {
             </form>
             <div className="separator">
               <p className="change_link">or
-                <a href="https://quickcatalog.in/Signin"> <u>Login with OTP</u> </a>
+                <a href="https://www.quickcatalog.in/GetLoginOTP"> <u>Login with OTP</u> </a>
               </p>
               <p className="change_link">New to site?
-                <a href="https://quickcatalog.in/signup"> <u>SignUp</u> </a>
+                <a href="https://www.quickcatalog.in/signup"> <u>SignUp</u> </a>
               </p>
             </div>
           </section>

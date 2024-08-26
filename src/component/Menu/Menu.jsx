@@ -26,7 +26,7 @@ const Menu = () => {
     return (
         <>
         <div style={{
-            backgroundImage: `url('https://quickcatalog.online/uploads/${shopdtl.imageUrl}')`,
+            backgroundImage: `url('https://quickcatalog.online/uploads/' + shopdtl.imageUrl')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
         }}>

@@ -86,10 +86,10 @@ const LoginWithOTP = (props) => {
                         <div className="clearfix"></div>
                         <div className="separator">
                             <p className="change_link">or
-                                <a href="https://quickcatalog.in/Signin"> <u>Login with Password</u> </a>
+                                <a href="https://www.quickcatalog.in/Signin"> <u>Login with Password</u> </a>
                             </p>
                             <p className="change_link">New to site?
-                                <a href="https://quickcatalog.in/signup"> <u>Sign Up</u> </a>
+                                <a href="https://www.quickcatalog.in/signup"> <u>Sign Up</u> </a>
                             </p>
                             <div className="clearfix"></div>
                             <br />

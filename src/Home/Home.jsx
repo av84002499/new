@@ -18,29 +18,13 @@ const Home = () => {
                         <div className="carousel-item active">
                             <div className="slider-overlay"></div>
                             <img src="../images/slider-1.jpg" className="d-block w-100" alt="slider" />
-                            <div className="carousel-caption d-flex flex-row align-items-center">
+                            <div className="carousel-caption d-flex flex-column flex-lg-row align-items-center">
                                 <div className="b-flip-text">
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <h1 className="">Discover. Create. Share. QuickCatalog – Your Ultimate Catalog Companion!</h1>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <h1>Discover. Create. Share. QuickCatalog – Your Ultimate Catalog Companion!</h1>
                                     </div>
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <p className="">The easiest & most efficient way to manage your menu by E-Menu</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <p>The easiest & most efficient way to manage your menu by E-Menu</p>
                                     </div>
                                 </div>
                                 <div className="b-flip-image">
@@ -51,29 +35,13 @@ const Home = () => {
                         <div className="carousel-item">
                             <div className="slider-overlay"></div>
                             <img src="../images/slider-2.jpg" className="d-block w-100" alt="slider" />
-                            <div className="carousel-caption d-flex flex-row align-items-center">
+                            <div className="carousel-caption d-flex flex-column flex-lg-row align-items-center">
                                 <div className="b-flip-text">
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <h1 className="">QuickCatalog: Your Shortcut to Stunning Menus Anytime, Anywhere!</h1>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <h1>QuickCatalog: Your Shortcut to Stunning Menus Anytime, Anywhere!</h1>
                                     </div>
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <p className="">Create your digital menus quickly and easily with QR code, customers view the menu on their own device</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <p>Create your digital menus quickly and easily with QR code, customers view the menu on their own device</p>
                                     </div>
                                 </div>
                                 <div className="b-flip-image">
@@ -84,29 +52,13 @@ const Home = () => {
                         <div className="carousel-item">
                             <div className="slider-overlay"></div>
                             <img src="../images/slider-3.jpg" className="d-block w-100" alt="slider" />
-                            <div className="carousel-caption d-flex flex-row align-items-center">
+                            <div className="carousel-caption d-flex flex-column flex-lg-row align-items-center">
                                 <div className="b-flip-text">
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <h1 className="">Empower Your Brand with QuickCatalog – Fast, Fresh, Found!</h1>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <h1>Empower Your Brand with QuickCatalog – Fast, Fresh, Found!</h1>
                                     </div>
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <p className="">A E-Menu allows restaurant users to access the menu on their smartphones by simply scanning a QR code.</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <p>A E-Menu allows restaurant users to access the menu on their smartphones by simply scanning a QR code.</p>
                                     </div>
                                 </div>
                                 <div className="b-flip-image">
@@ -117,29 +69,13 @@ const Home = () => {
                         <div className="carousel-item">
                             <div className="slider-overlay"></div>
                             <img src="../images/slider-4.jpg" className="d-block w-100" alt="slider" />
-                            <div className="carousel-caption d-flex flex-row align-items-center">
+                            <div className="carousel-caption d-flex flex-column flex-lg-row align-items-center">
                                 <div className="b-flip-text">
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <h1 className="">Fast Track Your Listings with QuickCatalog!</h1>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <h1>Fast Track Your Listings with QuickCatalog!</h1>
                                     </div>
                                     <div className="flip-text">
-                                        <div className="flip-word">
-                                            <div className="flip-text-Carousel">
-                                                <ul className="flip-list">
-                                                    <li>
-                                                        <p className="">The easiest & most efficient way to manage your menu by E-Menu</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <p>The easiest & most efficient way to manage your menu by E-Menu</p>
                                     </div>
                                 </div>
                                 <div className="b-flip-image">

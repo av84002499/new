@@ -261,7 +261,7 @@ const Userprofile = (props) => {
               <div className="modal-body text-center" style={{ position: 'relative' }}>
                 <div ref={qrCodeRef} style={{ position: 'relative', display: 'inline-block' }}>
                   <QRCode
-                    value={`https://quickcatalog.in/Menu/${encodeURIComponent(props.userLogged().userID)}`}
+                    value={`https://www.quickcatalog.in/Menu/${encodeURIComponent(props.userLogged().userID)}`}
                     size={250}
                   />
                   <div
