@@ -8,40 +8,23 @@
     margin-top: 0%;
 }
 body{
-    background: #F5F5F5;
+    background-color: #F5F5F5;
 }
+
 a{
     text-decoration: none;
     color: inherit;
     line-height: 1;
     cursor: pointer;
 }
-.container{
+
+.containe{
+
+
     padding-left: 2%;
-    padding-right: 2%;
+    padding-right: 0%;
 }
-@media (min-width: 768px) {
-    .container, .container-md, .container-sm {
-      max-width: 1540px;
-    }
-  }
- 
-  .carousel-caption {
-    bottom: 20px;
-    text-align: center;
-}
-.b-flip-text h1 {
-    font-size: 2.5rem;
-}
-.b-flip-text p {
-    font-size: 1.25rem;
-}
-@media (max-width: 768px) {
-    .b-flip-text h1 {
-        font-size: 1.5rem;
-    }
-    .b-flip-text p {
-        font-size: 1rem;
-    }
-}
+
+
+
   
