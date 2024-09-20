@@ -25,22 +25,26 @@ const Menu = () => {
 
     return (
         <>
-        <div style={{
-            backgroundImage: `url('https://quickcatalog.online/uploads/' + shopdtl.imageUrl')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        }}>
+            <div style={{
+                backgroundImage: `url('https://quickcatalog.online/uploads/${shopdtl.imageUrl}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                height: '400px', 
+                color: '#fff', 
+            }}>
                 <section className="innerpages-banner text-center innerpages-banner-hair">
                     <div className="container">
                         <div className="inner-banner-text text-center">
-
                             <h1>{shopdtl.shopname}</h1>
-                            <p>{shopdtl.address}
-                            </p>
+                            <p>{shopdtl.address}</p>
                         </div>
                     </div>
                 </section>
             </div>
+
 
             <section className="dishes-menu">
                 <div className="container">
@@ -64,9 +68,9 @@ const Menu = () => {
                                 {menuItem.map((product, index) => (<>
                                     <div key={index} className="menu-style col-md-6">
                                         <div className="menu-item align-items-center d-flex">
-                                        <div className="menu-item-thumbnail">
-                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
-                                    </div>
+                                            <div className="menu-item-thumbnail">
+                                                <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
+                                            </div>
                                             <div className="menu-item-description">
                                                 <h5>{product.name}</h5>
                                                 <p>Size: {product.sizes.map((size) => (<>
