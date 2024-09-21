@@ -54,10 +54,12 @@ const App = () => {
               <Navbar />
               <Home userLogged={getUserLogged}
               />
+              <Footer />
+
             </>
           }
         />
-         <Route
+        <Route
           key="Contact"
           path="/Contact"
           element={
@@ -65,13 +67,14 @@ const App = () => {
               <Navbar />
               <Contact userLogged={getUserLogged}
               />
+              <Footer />
+
             </>
           }
         />
 
         <Route key="Menu" path="/Menu/:id" element={
           <>
-            <Navbar />
             <Menu />
           </>
         } />
@@ -82,50 +85,97 @@ const App = () => {
             <>
               <Navbar />
               <Home userLogged={getUserLogged} />
+              <Footer />
+
             </>
           }
         />
 
-        <Route key="Signup" path="/Signup" element={<Signup />} />
+        <Route key="Signup" path="/Signup" element=
+          {
+            <>
+              <Signup />
+              <Footer />
+
+            </>
+          }
+
+        />
         <Route
           key="Signin"
           path="/Signin"
-          element={<Signin setUserLogged={setUserLogged} />}
+          element={
+            <>
+
+              <Signin setUserLogged={setUserLogged} />
+              <Footer />
+            </>
+          }
         />
+
         <Route
           key="getloginotp"
           path="/getloginotp"
-          element={<GetLoginOTP />}
+          element={
+            <>
+              <GetLoginOTP />
+              <Footer />
+
+            </>
+          }
         />
         <Route
           key="loginwithotp"
           path="/loginwithotp"
-          element={<LoginWithOTP setUserLogged={setUserLogged} />}
+          element=
+          {
+            <>
+
+              <LoginWithOTP setUserLogged={setUserLogged} />
+              <Footer />
+            </>
+          }
         />
         <Route
           key="getresetpasswordotp"
           path="/getresetpasswordotp"
-          element={<GetResetPasswordOTP />}
+          element=
+          {
+            <>
+              <GetResetPasswordOTP />
+              <Footer />
+
+            </>}
         />
         <Route
           key="resetpasswordwithotp"
           path="/resetpasswordwithotp"
-          element={<ResetPasswordWithOTP />}
+          element=
+          {
+            <>
+              <ResetPasswordWithOTP />
+
+              <Footer />
+            </>
+          }
         />
         <Route
           key="Userprofile"
           path="/Userprofile"
           element={
-            <Userprofile
-              userLogged={getUserLogged}
-              logoutUser={deleteUserLogged}
-            />
+            <>
+              <Userprofile
+                userLogged={getUserLogged}
+                logoutUser={deleteUserLogged}
+              />
+              <Footer />
+
+            </>
           }
         />
 
 
       </Routes>
-      <Footer />
     </div>
   );
 };

@@ -98,6 +98,30 @@
     padding: 12px 20px;
   }
 }
+/* Dropdown styles */
+.account-dropdown .dropdown-toggle {
+  cursor: pointer;
+}
+
+.account-dropdown {
+  position: relative; /* Ensure the dropdown menu is positioned relative to this element */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Places the menu just below the toggle */
+  left: 0; /* Aligns the dropdown menu to the left side of the toggle */
+  background-color: #050505;
+  list-style: none;
+  padding: 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.open {
+  display: block; /* Shows the dropdown menu when 'open' class is added */
+}
+
 
 /* Tablet screens */
 @media (max-width: 1024px) {
@@ -107,22 +131,6 @@
 }
 
 
-/* Dropdown styles */
-.account-dropdown .dropdown-toggle {
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-left: 89%;
-  background-color: #050505;
-  list-style: none;
-  padding: 0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .dropdown-menu.open {
   display: block;
