@@ -13,6 +13,7 @@ import LoginWithOTP from "./component/pages/LoginWithOTP";
 import GetResetPasswordOTP from "./component/pages/GetResetPasswordOTP";
 import ResetPasswordWithOTP from "./component/pages/ResetPasswordWithOTP";
 import Contact from "./Contact/Contact"
+import About from "./About/About";
 
 const App = () => {
   // Set Logged user cookie
@@ -59,6 +60,7 @@ const App = () => {
             </>
           }
         />
+        
         <Route
           key="Contact"
           path="/Contact"
@@ -73,6 +75,21 @@ const App = () => {
           }
         />
 
+        <Route
+          key="About"
+          path="/About"
+          element={
+            <>
+              <Navbar />
+              <About userLogged={getUserLogged}
+              />
+              <Footer />
+
+            </>
+          }
+        />
+
+       
         <Route key="Menu" path="/Menu/:id" element={
           <>
             <Menu />
