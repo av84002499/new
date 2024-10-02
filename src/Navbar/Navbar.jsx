@@ -51,9 +51,7 @@ const Navbar = () => {
         <div className="line"></div>
       </div>
       <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-        <li>
-          <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-        </li>
+       
         {/* Account Dropdown */}
         <li className="account-dropdown" onClick={toggleDropdown}>
           <span className="dropdown-toggle">Account</span>

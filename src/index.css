@@ -175,4 +175,116 @@ a{
   border: 2px dashed #2a5c99;
 }
 
+/* General mobile and tablet breakpoints */
+@media only screen and (max-width: 1024px) {
+  .menu-item-description {
+    width: 80%; /* Adjust description width on tablets */
+  }
+  .menu-item-price {
+    width: 50px; /* Smaller space for prices */
+    float: right;
+  }
+  .custom-heading h2 {
+    font-size: 32px; /* Reduce the size of headings */
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Stack nav-tabs vertically on mobile */
+  .nav-pills.dishmenu-tabs .nav-link {
+    width: 100%; /* Each tab spans full width */
+    font-size: 18px; /* Smaller font size for better fit */
+    padding: 0.5rem 0; /* Reduce padding */
+  }
+
+  /* Stack menu items vertically */
+  .menu-item-thumbnail, 
+  .menu-item-description, 
+  .menu-item-price {
+    width: 100%; /* Stack elements for smaller screens */
+    float: none;
+    text-align: left; /* Align text for readability */
+    margin: 0 0 20px 0; /* Add bottom margin for space */
+  }
+  
+  /* Thumbnail adjustments */
+  .menu-item-thumbnail {
+    width: 70px; 
+    height: 70px; /* Smaller thumbnails for mobile */
+    margin-bottom: 10px;
+  }
+
+  /* Reduce the font size for better readability */
+  .menu-item-description h5 {
+    font-size: 18px; 
+  }
+  .menu-item-description p {
+    font-size: 12px;
+  }
+
+  /* Price section alignment */
+  .menu-item-price p {
+    font-size: 18px;
+    padding: 15px 0;
+  }
+
+  /* Adjust section title */
+  .menu-section-title h2 {
+    font-size: 24px;
+  }
+
+  /* Reduce heading sizes on smaller screens */
+  .custom-heading h2 {
+    font-size: 28px;
+  }
+
+  /* Adjust borders for mobile */
+  .menu-section-title .m-icon::before,
+  .menu-section-title .m-icon::after {
+    width: 30px; /* Shorten decorative lines */
+  }
+}
+
+/* Extra small devices like phones in landscape mode */
+@media only screen and (max-width: 575px) {
+  .menu-item-description {
+    width: 100%; /* Full width for better stacking */
+  }
+
+  /* Adjust padding and margin for mobile */
+  .menu-item-price p {
+    padding: 10px 0;
+  }
+
+  /* Further reduce font sizes for smaller screens */
+  .menu-item-description h5 {
+    font-size: 16px;
+  }
+  .menu-item-description p {
+    font-size: 12px;
+  }
+
+  /* Make sure text is readable */
+  .menu-item-price p {
+    font-size: 16px;
+  }
+}
+
+/* Fine-tune font sizes for very small devices */
+@media only screen and (max-width: 400px) {
+  .menu-item-thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+  .menu-item-description h5 {
+    font-size: 14px;
+  }
+  .menu-item-description p {
+    font-size: 10px;
+  }
+  .menu-item-price p {
+    font-size: 14px;
+  }
+}
+
   
