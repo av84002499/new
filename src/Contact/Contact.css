@@ -7,7 +7,7 @@
     justify-content: center; /* Centers horizontally */
     align-items: center; /* Centers vertically */
     flex-direction: column;
-    background: black;
+    background: rgb(80, 65, 242);
 }
 
 .contact .content{
