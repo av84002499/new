@@ -6,25 +6,7 @@ const Products = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
 
-    const [loading, setLoading] = useState(true);
-    const [count, setCount] = useState(2);
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setCount(prevCount => prevCount - 1);
-        }, 2000);
 
-        // Stop the loading and countdown when count reaches 1
-        if (count === 2) {
-            setLoading(false);
-            clearTimeout(timer);
-        }
-
-        return () => clearTimeout(timer);
-    }, [count]);
-    const handleClick = () => {
-        setLoading(true);
-        setCount(5); // or any desired countdown value
-    };
 
     const [formData, setFormData] = useState({
         name: '',
@@ -91,7 +73,7 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('https://quickcatalog.online/api/products/', {
+            const response = await fetch('http://localhost:3200/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -104,7 +86,6 @@ const Products = (props) => {
             }
             const responseData = await response.json();
             console.log(responseData);
-            setLoading(false);
             Swal.fire({
                 icon: 'success',
                 title: name + ' added successfully!',
@@ -128,7 +109,7 @@ const Products = (props) => {
 
         try {
             const formData = { ownerId: ownerId };
-            const response = await fetch('https://quickcatalog.online/api/products/myProducts', {
+            const response = await fetch('http://localhost:3200/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -177,7 +158,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://quickcatalog.online/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -222,7 +203,7 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'https://quickcatalog.online/api/products/' + prodId;
+            const url = 'http://localhost:3200/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -250,47 +231,55 @@ const Products = (props) => {
         }
     };
 
-    // const saveimageurl = async (prodId) => {
-    //     const userId = props.userLogged.userID;
-    //     if (!userId) {
-    //         alert('Please Login again!');
-    //         navigate('/Signin');
-    //         return;
-    //     }
-    //     try {
-    //         const formDataToSend = new FormData(prodId.target);
-    //         formDataToSend.append('prodId', userId);
+    const saveimageurl = async (e) => {
+        e.preventDefault() // Prevent form from submitting the traditional way
 
-    //         const response = await fetch('https://quickcatalog.online/api/imagurl/prodimg', {
-    //             method: 'POST',
-    //            headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: props.userLogged.token,
-    //             },
-    //             body: formDataToSend,
-    //         });
-    //         if (!response.ok) {
-    //             console.log('Failed to Save!!');
-    //             return;
-    //         }
-    //         try {
-    //             const responseData = await response.json();
-    //             console.log(responseData);
-    //             Swal.fire({
-    //                 icon: 'success',
-    //                 title: 'Details updated successfully!',
-    //                 showConfirmButton: false,
-    //                 timer: 3000, // 3 seconds
-    //             });
-    //             getProducts();
-    //         } catch {
-    //             console.log('Something went wrong!!');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error saving details:', error.message);
-    //         alert(error.message);
-    //     }
-    // };
+        const userId = props.userLogged.userID;
+        if (!userId) {
+            alert('Please Login again!');
+            navigate('/Signin');
+            return;
+        }
+
+        const prodId = e.target.prodId.value;  // Get the prodId from form input
+        if (!prodId) {
+            alert("Product ID is required!");
+            return;
+        }
+
+        try {
+            const formDataToSend = new FormData(e.target); // Include form fields
+
+            const response = await fetch('http://localhost:3200/api/imagurl/prodimg', {
+                method: 'POST',
+                headers: {
+                    Authorization: props.userLogged.token,  // Authorization token
+                },
+                body: formDataToSend,  // Automatically sets appropriate content type for FormData
+            });
+
+            if (!response.ok) {
+                console.log('Failed to Save!!');
+                return;
+            }
+
+            const responseData = await response.json();
+            console.log(responseData);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Details updated successfully!',
+                showConfirmButton: false,
+                timer: 3000, // 3 seconds
+            });
+
+            getProducts();  // Update products after successful save
+        } catch (error) {
+            console.error('Error saving details:', error.message);
+            alert(error.message);
+        }
+    };
+
 
 
 
@@ -300,58 +289,83 @@ const Products = (props) => {
                 <div className="card-header text-white" style={{ backgroundColor: '#2a5c99' }}>
                     <h3 className="tm-hero-title mb-0">
                         My Products
-                        <button className='btn btn-sm bg-info rounded-pill position-absolute end-0 me-3' data-bs-toggle="modal" data-bs-target='#AddProdModal'><i className="bi bi-plus-circle"></i> Add New</button>
+                        <button className='btn btn-sm bg-info rounded-pill position-absolute py-1 px-2 end-0 me-3' data-bs-toggle="modal" data-bs-target='#AddProdModal'><i className="bi bi-plus-circle"></i> Add New</button>
                     </h3>
                 </div>
+
                 <div className="card-body row">
                     <hr />
-                    {products.map((product, index) => (
-                        <div className='col-sm-6' key={index}>
-                            <div className="card m-3 border-0">
-                                <div className="menu-item">
-                                    <div className="menu-item-thumbnail ">
-                                        <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded w-100 h-100" alt="Product" />
+                    <div className="row row-cols-1  row-cols-md-2 row-cols-lg-4 g-4">
+                        {products.map((product, index) => (
+                            <div className="col">
+                                <div className="card">
+                                    <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
+                                    <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-1 p-1" data-bs-toggle="modal" data-bs-target={"#prodModal" + product._id}>
+                                        <i className="bi bi-pencil-square"></i>
+                                    </button>
+                                    <div className="modal fade" id={"prodModal" + product._id} tabIndex="-1" aria-labelledby="prodModalLabel" aria-hidden="true">
 
-
-                                        {/* <img src='./images/profile-image.jpg' className="img-fluid rounded-circle" style={{ width: '50px', height: '50px' }} alt='Product Profile' />
-                                        <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-3 p-1" data-bs-toggle="modal" data-bs-target="#prodectModal">
-                                            <i className="bi bi-pencil-square"></i>
-                                        </button>
-                                        <div className="modal fade" id="prodectModal" tabIndex="-1" aria-labelledby="prodectModalLabel" aria-hidden="true">
-                                            <div className="modal-dialog">
-                                                <div className="modal-content">
-                                                    <div className="modal-header">
-                                                        <h5 className="modal-title" id="prodectModalLabel">Change Profile Picture</h5>
-                                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div className="modal-body">
-                                                        <form id='ProdectImgForm' onSubmit={saveimageurl} encType="multipart/form-data">
-                                                            <input className="form-control mb-3 rounded-pill d-none" type="text" id="userId" name="userId" />
-                                                            <input className="form-control mb-3 rounded-pill" type="file" id="prodId" name="imageUrl" accept="image/*" required />
-                                                            <button className="btn btn-success rounded-pill float-end ms-3" type='submit'>Save</button>
-                                                            <button type="button" className="btn btn-secondary float-end rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                                        </form>
-                                                    </div>
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h5 className="modal-title" id="prodModalLabel">Change Product Picture</h5>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <form id="ProdectImgForm" onSubmit={saveimageurl} encType="multipart/form-data">
+                                                        <input className="d-none" type="text" id="prodId" name="prodId" defaultValue={product._id} />
+                                                        <input className="form-control mb-3 rounded-pill" type="file" id="prodIMG" name="imageUrl" accept="image/*" required />
+                                                        <button className="btn btn-success rounded-pill float-end ms-3" type='submit'>Save</button>
+                                                        <button type="button" className="btn btn-secondary float-end rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </div> */}
-                                    </div>
+                                        </div>
 
-                                    <div className="menu-item-description position-relative">
-                                        <h5>{product.name}</h5>
-                                        <p>Size: {product.sizes.map((size, idx) => <span key={idx}>{size}</span>)}</p>
                                     </div>
-                                    <div className="menu-item-price">
+                                    <div className="card-body">
+                                        <h5 className="card-title">{product.name}</h5>
                                         <h6>Rs.{product.price}/-</h6>
+                                        <p className="card-text">Size: {product.sizes.map((size, idx) => <span key={idx}>{size}</span>)}</p>
                                     </div>
-                                    <div className='position-absolute top-0 end-0 m-3'>
-                                        <button type='button' className='btn btn-sm btn-danger rounded-pill float-end' onClick={() => confirmDelete(product.name, product._id)}><i className="bi bi-trash"></i></button>
-                                        <button className='btn btn-sm btn-danger rounded-pill float-end' data-bs-toggle="modal" data-bs-target='#UpdateProdModal' onClick={() => editProduct(product._id, product.name, product.price, product.sizes, product.imageUrl)}>Edit</button>
+                                    <div className="card-footer">
+                                        <button className='btn btn-sm btn-info rounded-pill col-5' data-bs-toggle="modal" data-bs-target={'#UpdateProdModal'+product._id} onClick={() => editProduct(product._id, product.name, product.price, product.sizes, product.imageUrl)}>Edit</button>
+                                        <button className='btn btn-sm btn-danger rounded-pill col-5 float-end' onClick={() => confirmDelete(product.name, product._id)}><i className="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                                {/* Update product modal */}
+                                <div className="modal fade" id={"UpdateProdModal"+product._id} tabIndex="-1" aria-labelledby="UpdateProdModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="UpdateProdModalLabel">Update Product</h5>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <form id="updateForm" onSubmit={handleSubmit}>
+                                                    <div className="mb-3">
+                                                        <input type="text" className="form-control rounded-pill" placeholder="Name" name="name" value={name} onChange={handleChange} required />
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <input type="number" className="form-control rounded-pill" placeholder="Price" name="price" value={price} onChange={handleChange} required />
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <input type="text" className="form-control rounded-pill" placeholder="Sizes" name="sizes" value={sizes} onChange={handleChange} required />
+                                                    </div>
+                                                    {/* <input type="file" name="imageUrl" onChange={handleChange} required /> */}
+
+                                                    <div className="modal-footer">
+                                                        <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" className="btn btn-success rounded-pill">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -360,7 +374,7 @@ const Products = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="AddProdModalLabel">Add a Product</h5>
+                            <h5 className="modal-title " id="AddProdModalLabel">Add a Product</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -374,47 +388,10 @@ const Products = (props) => {
                                 <div className="mb-3">
                                     <input type="text" className="form-control rounded-pill" placeholder="Sizes" name="sizes" value={sizes} onChange={handleChange} required />
                                 </div>
-                                <input type="file" name="imageUrl" onChange={handleChange} required />
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" className="btn btn-success rounded-pill" onClick={handleClick}>
-                                        {loading ? (
-                                            <p>Please wait {count} sec...</p>
-                                        ) : (
-                                            <p>Save</p>
-                                        )}
-                                    </button>                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Update product modal */}
-            <div className="modal fade" id="UpdateProdModal" tabIndex="-1" aria-labelledby="UpdateProdModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="UpdateProdModalLabel">Update Product</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form id="updateForm" onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control rounded-pill" placeholder="Name" name="name" value={name} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="number" className="form-control rounded-pill" placeholder="Price" name="price" value={price} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control rounded-pill" placeholder="Sizes" name="sizes" value={sizes} onChange={handleChange} required />
-                                </div>
                                 {/* <input type="file" name="imageUrl" onChange={handleChange} required /> */}
-
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" className="btn btn-success rounded-pill">Update</button>
-                                </div>
+                                    <button type="submit" className="btn btn-success rounded-pill"> Save </button>                                </div>
                             </form>
                         </div>
                     </div>

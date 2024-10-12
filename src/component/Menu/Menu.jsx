@@ -9,7 +9,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchMenuItem = async () => {
             try {
-                const response = await fetch(`https://quickcatalog.online/api/menu/${id}`);
+                const response = await fetch(`http://localhost:3200/api/menu/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch menu item');
                 }
@@ -26,14 +26,14 @@ const Menu = () => {
     return (
         <>
             <div style={{
-                backgroundImage: `url('https://quickcatalog.online/uploads/${shopdtl.imageUrl}')`,
+                backgroundImage: `url('http://localhost:3200/uploads/${shopdtl.imageUrl}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                height: '400px', 
-                color: '#fff', 
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '400px',
+                color: '#fff',
             }}>
                 <section className="innerpages-banner text-center innerpages-banner-hair">
                     <div className="container">
@@ -64,26 +64,19 @@ const Menu = () => {
                     <hr />
                     <div className="container">
                         <div className="tab-pane fade show active" id="tabmenu-one" role="tabpanel" aria-labelledby="tabmenu-one-tab">
-                            <div className="row">
-                                {menuItem.map((product, index) => (<>
-                                    <div key={index} className="menu-style col-md-6">
-                                        <div className="menu-item align-items-center d-flex">
-                                            <div className="menu-item-thumbnail">
-                                                <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="img-fluid rounded-start w-100 h-100" alt="..." />
-                                            </div>
-                                            <div className="menu-item-description">
-                                                <h5>{product.name}</h5>
-                                                <p>Size: {product.sizes.map((size) => (<>
-                                                    {size}
-                                                </>))}
-                                                </p>
-                                            </div>
-                                            <div className="menu-item-price">
-                                                <p>Rs.{product.price}/-</p>
+                            <div className="row row-cols-1  row-cols-md-2 row-cols-lg-4 g-4">
+                                {menuItem.map((product, index) => (
+                                    <div className="col">
+                                        <div className="card">
+                                            <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{product.name}</h5>
+                                                <h6>Rs.{product.price}/-</h6>
+                                                <p className="card-text">Size: {product.sizes.map((size, idx) => <span key={idx}>{size}</span>)}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </>))}
+                                ))}
                             </div>
                         </div>
                     </div>

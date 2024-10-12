@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Products from './Products.js';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 import QRCode from 'qrcode.react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+// import './Navbar2.css'
 
 const Userprofile = (props) => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Userprofile = (props) => {
 
     try {
       const formData = { 'userId': userId };
-      const response = await fetch('https://quickcatalog.online/api/userdata/getuserdata', {
+      const response = await fetch('http://localhost:3200/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const Userprofile = (props) => {
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     var img = document.getElementById('profimg');
-    img.src = 'https://quickcatalog.online/uploads/' + shopdtl.imageUrl;
+    img.src = 'http://localhost:3200/uploads/' + shopdtl.imageUrl;
     img.height = 450;
     img.width = 400;
 
@@ -106,7 +106,7 @@ const Userprofile = (props) => {
 
     console.log(formData);
     try {
-      const response = await fetch('https://quickcatalog.online/api/userdata/', {
+      const response = await fetch('http://localhost:3200/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const Userprofile = (props) => {
       const formDataToSend = new FormData(event.target);
       formDataToSend.append('userId', userId);
 
-      const response = await fetch('https://quickcatalog.online/api/imagurl/shopimg', {
+      const response = await fetch('http://localhost:3200/api/imagurl/shopimg', {
         method: 'POST',
         headers: {
           "Authorization": props.userLogged().token,
@@ -200,52 +200,39 @@ const Userprofile = (props) => {
   }, [getShopdtls]);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark py-0 sticky-nav fade-in-top">
-        <div className="container-fluid mainbar">
-          <Link className="navbar-brand js-scroll-trigger" to="/">
-
-            <img
-              className="nav-logo-black"
-              src="./images/logo-black.png"
-              alt="logo img"
-            />
-          </Link>
-          <button
-            className="navbar-toggler navbar-toggler-right"
-            type="button"
-            aria-label="Toggle navigation"
-          >
+      <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href='/'>
+            <img src="./images/logo-black.png" alt="Logo" width="200" height="40" className="d-inline-block align-text-top me-2 " />
+          </a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-
-          >
-            <ul className="nav">
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <h3 className="welcome-message">Welcome, {props.userLogged().name}</h3>
+                <h5 className="me-3 text-white">Welcome, {props.userLogged().name}</h5>
               </li>
-
               <li className="nav-item">
-                <button className="btn btn-sm btn-primary rounded-pill float-end" data-bs-toggle="modal" data-bs-target="#qrModal">
+                <button className="btn btn-sm btn-info me-2 rounded-pill float-end" data-bs-toggle="modal" data-bs-target="#qrModal">
                   Generator qr code
                 </button>
               </li>
-
               <li className="nav-item">
                 <button className="btn btn-sm btn-danger rounded-pill float-end" onClick={logoutUser}>
                   Logout
                 </button>
               </li>
             </ul>
-
           </div>
         </div>
       </nav>
+
       <div className="card shadow" style={{ maxWidth: '80vw', margin: 'auto', marginTop: '7rem', marginBottom: '3rem' }}>
         <div className="card-header text-center text-white" style={{ backgroundColor: '#2a5c99' }}>
           <h2 className="tm-hero-title mb-0 position-relative">
             Profile
-            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="bi bi-upc-scan"> QR</i></button>
+            <button type="button" className="btn position-absolute top-0 end-0 p-1 text-white" data-bs-toggle="modal" data-bs-target="#qrModal"><i className="bi bi-upc-scan"> QR</i></button>
 
           </h2>
 
@@ -283,7 +270,7 @@ const Userprofile = (props) => {
                       alignItems: 'center'
                     }}
                   >
-                    <img src="./images/qc.png" alt="QC Logo" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
+                    <img src="../images/qc1.png" alt="png" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
                   </div>
                 </div>
                 <h1>{props.userLogged().name}</h1>
@@ -292,19 +279,13 @@ const Userprofile = (props) => {
             </div>
           </div>
         </div>
-
-
-
-
-
-
         <div className="card-body">
           <section className="login_content">
             <div className="tm-hero-text-container">
               <div className='row'>
                 <div className='col-md-4 p-2'>
                   <div className='overflow-hidden rounded position-relative border' style={{ maxHeight: '63vh' }}>
-                    <img id='profimg' src='./images/profile-image.jpg' width='100%' alt='userimg' />
+                    <img id='profimg' className='w-100 h-auto' src='./images/profile-image.jpg' alt='userimg' />
                     <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-3 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i className="bi bi-pencil-square p-1"></i></button>
                   </div>
 
