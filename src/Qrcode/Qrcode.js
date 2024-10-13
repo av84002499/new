@@ -16,12 +16,12 @@ const Qrcode = () => {
 
   return (
     <div className='container vw-100 d-flex flex-column justify-content-center align-items-center'>
-      <div className='w-50'>
+      <div className='container-sm w-50'>
       <h1 className='text-center my-3'>
         Scan QR
       </h1>
       <hr />
-          <div className='m-auto border border-3 border-danger rounded bg-dark' style={{ width: '500px', height: '500px' }}>
+          <div className='m-auto border border-3 border-danger rounded bg-dark'>
             <QrReader
               onResult={(result, error) => {
                 if (result) {
