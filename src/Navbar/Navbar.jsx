@@ -44,14 +44,16 @@ const Navbar = () => {
 
   return (
     <nav ref={navRef} className={`navbar-container ${sticky ? 'dark-nav' : ''}`}>
-      <img src="../images/logo-white.png" alt="Logo" className="logo" />
+      <a href="/Home">
+        <img src="../images/logo-white.png" alt="Logo" className="logo" />
+      </a>
       <div className={`menu-icon ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
         <div className="line"></div>
         <div className="line"></div>
         <div className="line"></div>
       </div>
       <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-       
+
         {/* Account Dropdown */}
         <li className="account-dropdown" onClick={toggleDropdown}>
           <span className="dropdown-toggle">Account</span>
@@ -71,7 +73,7 @@ const Navbar = () => {
           <Link to="/Contact" onClick={() => setMobileMenuOpen(false)}>Contact us</Link>
         </li>
         <li>
-          <Link to="/Qrcode" onClick={() => setMobileMenuOpen(false)}>Qrcode</Link>
+          <Link to="/Qrcode" onClick={() => setMobileMenuOpen(false)}>Scan</Link>
         </li>
       </ul>
     </nav>

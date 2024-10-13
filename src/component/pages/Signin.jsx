@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './Login.css'
+import Loader from '../Loader';
 
 const Signin = (props) => {
   const navigate = useNavigate();
@@ -113,6 +114,7 @@ const Signin = (props) => {
           </section>
         </div>
       </div>
+      {loading && <Loader />}
     </div>
   );
 };

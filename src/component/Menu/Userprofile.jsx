@@ -4,13 +4,15 @@ import Products from './Products.js';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
-import QRCode from 'qrcode.react';
+import {QRCodeCanvas} from 'qrcode.react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Loader from '../Loader.jsx';
 // import './Navbar2.css'
 
 const Userprofile = (props) => {
   const navigate = useNavigate();
   const [shopdtl, setShopdtl] = useState(null);
+  const [loading, setLoading] = useState(false)
 
 
   const qrCodeRef = useRef(null);
@@ -39,8 +41,9 @@ const Userprofile = (props) => {
     }
 
     try {
+      setLoading(true)
       const formData = { 'userId': userId };
-      const response = await fetch('http://localhost:3200/api/userdata/getuserdata', {
+      const response = await fetch('https://quickcatalog.online/api/userdata/getuserdata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,6 +69,8 @@ const Userprofile = (props) => {
     catch (error) {
       console.error('Error loading details:', error.message);
       alert(error.message);
+    } finally{
+      setLoading(false)
     }
   }, [props, navigate]);
 
@@ -79,7 +84,7 @@ const Userprofile = (props) => {
     document.getElementById('gstnumber').value = shopdtl.gstnumber;
     document.getElementById('aadharnumber').value = shopdtl.aadharnumber;
     var img = document.getElementById('profimg');
-    img.src = 'http://localhost:3200/uploads/' + shopdtl.imageUrl;
+    img.src = 'https://quickcatalog.online/uploads/' + shopdtl.imageUrl;
     img.height = 450;
     img.width = 400;
 
@@ -104,9 +109,10 @@ const Userprofile = (props) => {
     const aadharnumber = document.getElementById('aadharnumber').value;
     const formData = { shopname: shopname, address: address, category: category, fcinumber: fcinumber, phonenumber1: phonenumber1, phonenumber2: phonenumber2, gstnumber: gstnumber, aadharnumber: aadharnumber, userId: userId };
 
-    console.log(formData);
+    // console.log(formData);
     try {
-      const response = await fetch('http://localhost:3200/api/userdata/', {
+      setLoading(true)
+      const response = await fetch('https://quickcatalog.online/api/userdata/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,6 +142,8 @@ const Userprofile = (props) => {
     catch (error) {
       console.error('Error saving details:', error.message);
       alert(error.message);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -148,10 +156,11 @@ const Userprofile = (props) => {
       return;
     }
     try {
+      setLoading(true)
       const formDataToSend = new FormData(event.target);
       formDataToSend.append('userId', userId);
 
-      const response = await fetch('http://localhost:3200/api/imagurl/shopimg', {
+      const response = await fetch('https://quickcatalog.online/api/imagurl/shopimg', {
         method: 'POST',
         headers: {
           "Authorization": props.userLogged().token,
@@ -178,6 +187,8 @@ const Userprofile = (props) => {
     } catch (error) {
       console.error('Error saving details:', error.message);
       alert(error.message);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -247,7 +258,7 @@ const Userprofile = (props) => {
               </div>
               <div className="modal-body text-center" style={{ position: 'relative' }}>
                 <div ref={qrCodeRef} style={{ position: 'relative', display: 'inline-block' }}>
-                  <QRCode
+                  <QRCodeCanvas
                     value={`https://www.quickcatalog.in/Menu/${encodeURIComponent(props.userLogged().userID)}`}
                     size={250}
                   />
@@ -371,6 +382,7 @@ const Userprofile = (props) => {
           </section>
         </div>
       </div>
+      {loading && <Loader />}
     </>
 
   );

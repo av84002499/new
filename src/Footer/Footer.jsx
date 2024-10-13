@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="row">
               <div className="footer-box col-xl-3 col-lg-3 col-md-6 col-sm-12">
                 <div className="footer-logo">
-                  <img className="img-fluid" src="../images/logo.png" alt="logo" />
+                  <img className="img-fluid" src="../images/logo-black.png" alt="logo" />
                 </div>
                 <div className="footer-box about-box">
                   <div className="box-content">

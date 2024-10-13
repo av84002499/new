@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
+import Loader from '../Loader';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,9 +29,9 @@ const Signup = () => {
       return;
     }
 
-    setLoading(true);
 
     try {
+      setLoading(true);
       // Wait for 4 seconds before proceeding with the submission
       await delay(4000);
 
@@ -141,7 +142,7 @@ const Signup = () => {
 
                     <div className="col-md-12 pt-md-2 pt-1">
                       <button className="btn btn-primary comn-btn" type="submit" disabled={loading}>
-                        {loading ? <p>Please wait...</p> : <p>Continue</p>}
+                        Signup
                       </button>
                     </div>
 
@@ -157,6 +158,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      {loading && <Loader />}
     </div>
   );
 };

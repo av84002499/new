@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loader from '../Loader';
 
-const Signin = (props) => {
+const GetLoginOTP = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            setLoading(true)
             const response = await fetch('https://quickcatalog.online/api/users/sendotp', {
                 method: 'POST',
                 headers: {
@@ -36,6 +39,8 @@ const Signin = (props) => {
             // Handle network errors or other errors
             console.error('Error sending OTP:', error);
             Swal.fire('Error!', 'Failed to send OTP. Please try again later.', 'error');
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -96,8 +101,9 @@ const Signin = (props) => {
                     </section>
                 </div>
             </div>
+            {loading && <Loader />}
         </div>
     );
 };
 
-export default Signin;
+export default GetLoginOTP;

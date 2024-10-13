@@ -13,6 +13,7 @@ import LoginWithOTP from "./component/pages/LoginWithOTP";
 import GetResetPasswordOTP from "./component/pages/GetResetPasswordOTP";
 import ResetPasswordWithOTP from "./component/pages/ResetPasswordWithOTP";
 import Contact from "./Contact/Contact"
+import Qrcode from "./Qrcode/Qrcode";
 import About from "./About/About";
 
 const App = () => {
@@ -89,7 +90,17 @@ const App = () => {
           }
         />
 
-       
+        <Route
+          key="Qrcode"
+          path="/Qrcode"
+          element={
+            <>
+              <Qrcode userLogged={getUserLogged}
+              />
+
+            </>
+          }
+        />
         <Route key="Menu" path="/Menu/:id" element={
           <>
             <Menu />

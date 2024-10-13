@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loader from '../Loader';
 
 const Products = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -73,7 +75,8 @@ const Products = (props) => {
         formData.append('imageUrl', imageUrl);
 
         try {
-            const response = await fetch('http://localhost:3200/api/products/', {
+            setLoading(true)
+            const response = await fetch('https://quickcatalog.online/api/products/', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,
@@ -96,6 +99,8 @@ const Products = (props) => {
             resetForm(); // Reset form fields after successful addition
         } catch (error) {
             console.error('Error saving details:', error.message);
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -108,8 +113,9 @@ const Products = (props) => {
         }
 
         try {
+            setLoading(true)
             const formData = { ownerId: ownerId };
-            const response = await fetch('http://localhost:3200/api/products/myProducts', {
+            const response = await fetch('https://quickcatalog.online/api/products/myProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -127,6 +133,8 @@ const Products = (props) => {
             setProducts(responseData);
         } catch (error) {
             console.error('Error loading Products:', error.message);
+        } finally{
+            setLoading(false)
         }
     }, [props, navigate]);
 
@@ -158,7 +166,8 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'http://localhost:3200/api/products/' + prodId;
+            setLoading(true)
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -180,6 +189,8 @@ const Products = (props) => {
         } catch (error) {
             console.error('Error deleting product:', error.message);
             navigate('/Signin');
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -203,7 +214,8 @@ const Products = (props) => {
         }
 
         try {
-            const url = 'http://localhost:3200/api/products/' + prodId;
+            setLoading(true)
+            const url = 'https://quickcatalog.online/api/products/' + prodId;
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -228,6 +240,8 @@ const Products = (props) => {
         } catch (error) {
             console.error('Error updating product:', error.message);
             navigate('/Signin');
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -248,9 +262,10 @@ const Products = (props) => {
         }
 
         try {
+            setLoading(true)
             const formDataToSend = new FormData(e.target); // Include form fields
 
-            const response = await fetch('http://localhost:3200/api/imagurl/prodimg', {
+            const response = await fetch('https://quickcatalog.online/api/imagurl/prodimg', {
                 method: 'POST',
                 headers: {
                     Authorization: props.userLogged.token,  // Authorization token
@@ -277,6 +292,8 @@ const Products = (props) => {
         } catch (error) {
             console.error('Error saving details:', error.message);
             alert(error.message);
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -297,9 +314,9 @@ const Products = (props) => {
                     <hr />
                     <div className="row row-cols-1  row-cols-md-2 row-cols-lg-4 g-4">
                         {products.map((product, index) => (
-                            <div className="col">
+                            <div className="col" key={index}>
                                 <div className="card">
-                                    <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
+                                    <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
                                     <button type="button" className="btn btn-warning rounded-pill position-absolute top-0 end-0 m-1 p-1" data-bs-toggle="modal" data-bs-target={"#prodModal" + product._id}>
                                         <i className="bi bi-pencil-square"></i>
                                     </button>
@@ -397,6 +414,7 @@ const Products = (props) => {
                     </div>
                 </div>
             </div>
+            {loading && <Loader />}
         </>
     );
 };

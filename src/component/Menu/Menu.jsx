@@ -9,7 +9,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchMenuItem = async () => {
             try {
-                const response = await fetch(`http://localhost:3200/api/menu/${id}`);
+                const response = await fetch(`https://quickcatalog.online/api/menu/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch menu item');
                 }
@@ -26,7 +26,7 @@ const Menu = () => {
     return (
         <>
             <div style={{
-                backgroundImage: `url('http://localhost:3200/uploads/${shopdtl.imageUrl}')`,
+                backgroundImage: `url('https://quickcatalog.online/uploads/${shopdtl.imageUrl}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 display: 'flex',
@@ -66,9 +66,9 @@ const Menu = () => {
                         <div className="tab-pane fade show active" id="tabmenu-one" role="tabpanel" aria-labelledby="tabmenu-one-tab">
                             <div className="row row-cols-1  row-cols-md-2 row-cols-lg-4 g-4">
                                 {menuItem.map((product, index) => (
-                                    <div className="col">
+                                    <div className="col" key={index}>
                                         <div className="card">
-                                            <img src={'http://localhost:3200/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
+                                            <img src={'https://quickcatalog.online/uploads/' + product.imageUrl} className="card-img-top" style={{ maxHeight: '250px', objectFit: 'cover' }} alt="Product" />
                                             <div className="card-body">
                                                 <h5 className="card-title">{product.name}</h5>
                                                 <h6>Rs.{product.price}/-</h6>

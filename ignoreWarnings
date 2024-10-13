@@ -1,8 +1,0 @@
-module.exports = {
-  // other configurations
-  ignoreWarnings: [
-    {
-      message: /Failed to parse source map/,
-    },
-  ],
-};

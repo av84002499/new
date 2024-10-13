@@ -8,7 +8,7 @@ const Home = () => {
         <header id="mainslider" className="masthead">
           <div className="banner-shape">
             <svg className="shape-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-              <path fill="#fff" fill-opacity="1"
+              <path fill="#fff" fillOpacity="1"
                 d="M0,224L34.3,213.3C68.6,203,137,181,206,154.7C274.3,128,343,96,411,122.7C480,149,549,235,617,245.3C685.7,256,754,192,823,186.7C891.4,181,960,235,1029,256C1097.1,277,1166,267,1234,218.7C1302.9,171,1371,85,1406,42.7L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
               </path>
             </svg>
@@ -95,67 +95,67 @@ const Home = () => {
             </button>
           </div>
         </header>
-        <section class="aboutus-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9 text-center mx-auto">
-          <div class="section-heading">
+        <section className="aboutus-section">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-9 text-center mx-auto">
+          <div className="section-heading">
             <h2>Your menu as a QR-Code</h2>
             <p>Access our menu digitally via QR code using any smartphone or tablet. Scan the QR code provided to enjoy the benefits of a hygienic and user-friendly experience.</p>
           </div>
         </div>
       </div>
-      <div class="row align-items-center">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="about-content-box">
-            <div class="about-label">
-              <span class="about-label-line"></span>
-              <span class="about-label-text">Step</span>
+      <div className="row align-items-center">
+        <div className="col-lg-6 col-md-12 col-sm-12">
+          <div className="about-content-box">
+            <div className="about-label">
+              <span className="about-label-line"></span>
+              <span className="about-label-text">Step</span>
             </div>
             <h2>Open scanner in your phone</h2>
-            <span class="shadow-background-text"> 01</span>
+            <span className="shadow-background-text"> 01</span>
             <p>Choose an Android or iOS device, access a scanning app. Phones have built-in QR scanners; alternatively, get a third-party QR code app from the app store. Use the phone camera to scan QR codes.</p>
           </div>
-          <div class="about-content-box">
-            <div class="about-label">
-              <span class="about-label-line"></span>
-              <span class="about-label-text">Step</span>
+          <div className="about-content-box">
+            <div className="about-label">
+              <span className="about-label-line"></span>
+              <span className="about-label-text">Step</span>
             </div>
             <h2>Scan QR code</h2>
-            <span class="shadow-background-text"> 02</span>
+            <span className="shadow-background-text"> 02</span>
             <p>Open the scanner app, scan the business's QR code with your phone's camera. QR codes store data and, when used with a compatible app, can link to webpages, contacts, or perform diverse actions.</p>
           </div>
-          <div class="about-content-box mb-0">
-            <div class="about-label">
-              <span class="about-label-line"></span>
-              <span class="about-label-text">Step</span>
+          <div className="about-content-box mb-0">
+            <div className="about-label">
+              <span className="about-label-line"></span>
+              <span className="about-label-text">Step</span>
             </div>
             <h2>Get the QucikCatalog</h2>
-            <span class="shadow-background-text"> 03</span>
+            <span className="shadow-background-text"> 03</span>
             <p>Scanning the QR code navigates to the business's QuickCatalog—a mobile-friendly digital list showcasing items or services. It enables convenient browsing with descriptions, prices, images, and supplementary information links.</p>
           </div>
         </div>
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="industyimages-slider">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="../images/about-image-2.png" class="img-fluid" alt="..."/>
+        <div className="col-lg-6 col-md-12 col-sm-12">
+          <div className="industyimages-slider">
+            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <img src="../images/about-image-2.png" className="img-fluid" alt="..."/>
                 </div>
-                <div class="carousel-item">
-                  <img src="../images/about-image.png" class="img-fluid" alt="..."/>
+                <div className="carousel-item">
+                  <img src="../images/about-image.png" className="img-fluid" alt="..."/>
                 </div>
-                <div class="carousel-item">
-                  <img src="../images/about-image-1.png" class="img-fluid" alt="..."/>
+                <div className="carousel-item">
+                  <img src="../images/about-image-1.png" className="img-fluid" alt="..."/>
                 </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>

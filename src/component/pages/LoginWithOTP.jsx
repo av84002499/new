@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loader from '../Loader'
 
 const LoginWithOTP = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setLoading(true)
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             const response = await fetch('https://quickcatalog.online/api/users/signinWithOTP', {
@@ -43,6 +46,8 @@ const LoginWithOTP = (props) => {
             // Handle network errors or other errors
             console.error('Error validating OTP:', error);
             Swal.fire('Error!', 'Failed to validate OTP. Please try again later.', 'error');
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -109,6 +114,7 @@ const LoginWithOTP = (props) => {
                     </section>
                 </div>
             </div>
+            {loading && <Loader />}
         </div>
     );
 };
